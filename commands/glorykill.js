@@ -1,4 +1,4 @@
-const { SlashCommand } = require("@discordjs/buiders")
+const { SlashCommand } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommand().setName("glorykill").setDescription("Replies a glory kill."),

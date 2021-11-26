@@ -20,13 +20,12 @@ function run() {
 
 doom_bot.on("interactionCreate", async interaction => {
     if (interaction.isCommand()) {
-        if (!doom_bot.commands.get(interaction.commandName)) {
-            return;
-        }
-        try {
-            await command.execute(interaction)
-        } catch (error) {
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+        if (doom_bot.commands.get(interaction.commandName)) {
+            try {
+                await command.execute(interaction)
+            } catch (error) {
+                await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            }   
         }
     }
 })
