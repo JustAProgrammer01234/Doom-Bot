@@ -1,5 +1,5 @@
 const fs = require("fs")
-const {Client, Intents, Collection} = require("discord.js");
+const {Client, Intents, Collection, MessageEmbed} = require("discord.js");
 const token = process.env.TOKEN;
 
 const doom_bot = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -12,13 +12,11 @@ for (const file of cmd_files) {
     doom_bot.commands.set(command.data.name, command);
 }
 
-function run() {
+doom_bot.once("ready", () => {
     doom_bot.user.setActivity("DOOM", { type: "PLAYING" });
     doom_bot.user.setStatus("dnd");
-	console.log("Ready to RIP AND TEAR!");
-}
-
-doom_bot.once("ready", run);
+    console.log("Ready to RIP AND TEAR!")
+});
 
 doom_bot.on("interactionCreate", async interaction => {
     if (interaction.isCommand()) {
@@ -27,8 +25,11 @@ doom_bot.on("interactionCreate", async interaction => {
             try {
                 await command.execute(interaction)
             } catch (error) {
-                console.log(error)
-                await interaction.reply({ content: 'Sorry to inform you but there was an error while I was executing this command!', ephemeral: true });
+                const errorEmbed = new MessageEmbed()
+                    .setTitle("An error occured!")
+                    .setColor("#FF0000")
+                    .setDescription(error)
+                await interaction.reply({ embeds: [ errorEmbed ], ephemeral: true });
             } 
         }
     }

@@ -1,6 +1,6 @@
-const fs = require('fs');
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const fs = require("fs");
+const { REST } = require("@discordjs/rest");
+const { Routes } = require("discord-api-types/v9");
 const token = process.env.TOKEN
 const clientId = process.env.CLIENTID
 
