@@ -12,6 +12,14 @@ for (const file of cmd_files) {
     doom_bot.commands.set(command.data.name, command);
 }
 
+async function client_can_be_param(exec_func, interaction, client) {
+    try {
+        exec_func(interaction, client);
+    } catch {
+        exec_func(interaction);
+    }
+};
+
 doom_bot.once("ready", () => {
     doom_bot.user.setActivity("DOOM", { type: "PLAYING" });
     doom_bot.user.setStatus("dnd");
@@ -23,7 +31,7 @@ doom_bot.on("interactionCreate", async interaction => {
         command = doom_bot.commands.get(interaction.commandName)
         if (command) {
             try {
-                await command.execute(interaction)
+                await client_can_be_param(command.execute, interaction, doom_bot);
             } catch (error) {
                 const errorEmbed = new MessageEmbed()
                     .setTitle("An error occured!")
