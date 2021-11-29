@@ -10,7 +10,7 @@ ENV DEVSERVERID id
 RUN npm install discord.js 
 RUN npm install @discordjs/builders 
 RUN npm install @discordjs/rest
-RUN npm install discord-api-types/v9
+RUN npm install discord-api-types
 RUN node deploy-commands.js 
 
 CMD ["node", "index.js"]
