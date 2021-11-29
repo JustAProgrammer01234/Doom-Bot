@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("ping").setDescription("Replies with the message PONG!"),
-    async execute(interaction) {
-        await interaction.reply("PONG!");
+    data: new SlashCommandBuilder().setName("ping").setDescription("Sends the bot's websocket heartbeat."),
+    async execute(interaction, client) {
+        await interaction.reply(`**PONG!** ${client.ws.ping}ms`);
     }
 };

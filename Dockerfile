@@ -5,7 +5,6 @@ COPY . /doom-bot
 
 ENV TOKEN token
 ENV CLIENTID clientid
-ENV DEVSERVERID id
 
 RUN npm install discord.js 
 RUN npm install @discordjs/builders 
