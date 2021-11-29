@@ -28,7 +28,7 @@ doom_bot.on("interactionCreate", async interaction => {
                 const errorEmbed = new MessageEmbed()
                     .setTitle("An error occured!")
                     .setColor("#FF0000")
-                    .setDescription(error)
+                    .setDescription(`${error}`)
                 await interaction.reply({ embeds: [ errorEmbed ], ephemeral: true });
             } 
         }
