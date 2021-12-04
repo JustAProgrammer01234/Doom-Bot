@@ -26,7 +26,7 @@ doom_bot.once("ready", () => {
     console.log("Ready to RIP AND TEAR!");
 });
 
-doom_bot.on("interactionCreate", async () => {
+doom_bot.on("interactionCreate", async (interaction) => {
     if (interaction.isCommand()) {
         command = doom_bot.commands.get(interaction.commandName)
         if (command) {
