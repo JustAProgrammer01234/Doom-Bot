@@ -6,7 +6,7 @@ module.exports = {
     async execute(interaction, client) {
         cmd_list = []
         for (const cmd of client.commands.values()) {
-            cmd_list.push(cmd.data.name)
+            cmd_list.push(`${cmd.data.name} -> ${cmd.data.description}`)
         }
         helpEmbed = new MessageEmbed()
             .setTitle("All help is down below!")
