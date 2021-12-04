@@ -14,9 +14,9 @@ for (const file of cmd_files) {
 
 async function client_can_be_param(exec_func, interaction, client) {
     try {
-        exec_func(interaction, client);
+        await exec_func(interaction, client);
     } catch {
-        exec_func(interaction);
+        await exec_func(interaction);
     }
 };
 
@@ -26,7 +26,7 @@ doom_bot.once("ready", () => {
     console.log("Ready to RIP AND TEAR!");
 });
 
-doom_bot.on("interactionCreate", async interaction => {
+doom_bot.on("interactionCreate", async () => {
     if (interaction.isCommand()) {
         command = doom_bot.commands.get(interaction.commandName)
         if (command) {

@@ -8,6 +8,6 @@ module.exports = {
             .setTitle("Doomguy:")
             .setColor("#FF0000")
             .setImage("https://www.denofgeek.com/wp-content/uploads/2017/07/doom.png?fit=1250%2C895");
-            await interaction.reply({embeds: [ doomguyEmbed ]});
+        await interaction.reply({ embeds: [ doomguyEmbed ] });
     }
 }
