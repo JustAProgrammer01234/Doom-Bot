@@ -8,7 +8,7 @@ module.exports = {
             .setTitle("All help is down below!")
             .setThumbnail("https://tenor.com/view/brutal-doom-doom-fighting-gif-15617995")
             .setColor("#FF0000");
-        for (const cmd of client.commands) {
+        for (const cmd of client.commands.values()) {
             helpEmbed.addField(cmd.data.name, cmd.data.description);
         }
         await interaction.reply({ embeds: [ helpEmbed ] });
