@@ -13,7 +13,7 @@ module.exports = {
             "https://tenor.com/view/glory-kill-doom2016-doom-baron-of-hell-gif-18693904",
             "https://tenor.com/view/doom-glory-kill-gif-15907019"
         ];
-        random_glory_kill = glory_kills[Math.floor(Math.random() * glory_kills.length)];
-        await interaction.reply(random_glory_kill);
+        random_glory_kill = glory_kills[Math.floor(Math.random() * glory_kills.length)]
+        await interaction.reply(random_glory_kill)
     }
-};
+}

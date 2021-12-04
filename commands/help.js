@@ -1,16 +1,18 @@
-const { MessageEmbed } = require("discord.js");
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageEmbed } = require("discord.js")
+const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
     async execute(interaction, client) {
+        cmd_list = []
+        for (const cmd of client.commands.values()) {
+            cmd_list.push(cmd.data.name)
+        }
         helpEmbed = new MessageEmbed()
             .setTitle("All help is down below!")
-            .setThumbnail("https://tenor.com/view/brutal-doom-doom-fighting-gif-15617995")
-            .setColor("#FF0000");
-        for (const cmd of client.commands.values()) {
-            helpEmbed.addField(cmd.data.name, cmd.data.description);
-        }
-        await interaction.reply({ embeds: [ helpEmbed ] });
+            .setThumbnail("https://i.imgflip.com/5lxovb.png")
+            .addField("Commands:", cmd_list.join("\n"))
+            .setColor("#FF0000")
+        await interaction.reply({ embeds: [ helpEmbed ] })
     }
 }
