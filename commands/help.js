@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
-    data: SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
+    data: new SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
     async execute(interaction, client) {
         helpEmbed = new MessageEmbed()
             .setTitle("All help is down below!")
