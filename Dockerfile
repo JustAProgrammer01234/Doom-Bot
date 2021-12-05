@@ -12,4 +12,6 @@ RUN npm install @discordjs/rest
 RUN npm install discord-api-types
 RUN node deploy-commands.js 
 
+USER node 
+
 CMD ["node", "index.js"]
