@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("doomguy").setDescription("Sends a pic of doomguy."),
-    async execute(interaction) {
+    execute: async (interaction) => {
         doomguyEmbed = new MessageEmbed()
             .setTitle("Doomguy:")
             .setColor("#FF0000")

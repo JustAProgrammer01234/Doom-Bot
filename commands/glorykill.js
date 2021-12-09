@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("glorykill").setDescription("Sends a random glory kill."),
-    async execute(interaction) {
+    execute: async (interaction) => {
         const glory_kills = [
             "https://tenor.com/view/doom-doom-eternal-glory-kill-doom-glory-kill-doom-eternal-zombie-gif-18694440",
             "https://tenor.com/view/doomslayer-glory-kill-doom-gif-16808615",
