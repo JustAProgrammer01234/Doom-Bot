@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
     data: SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
         .addUserOption((option) => {
-            option.setName("user").setDescription("The user to get info from")
+            option.setName("user").setDescription("The user to get info from.")
         }),
     execute: async (interaction) => {
         const botId = interaction.client.user.id
