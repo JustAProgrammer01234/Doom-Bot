@@ -11,14 +11,22 @@ module.exports = {
         const user = interaction.options.getUser("user")
 
         let embedTitle = null
+        let embedColor = null
         let isaBot = null
         let isaMember = null
+        let isnotMe = false 
 
         if (user.id === botId) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
             isaBot = "`If your puny little mind thinks I'm not a bot then consider going to a mental hospital.`"
             isaMember = "`That should be self explanatory.`"
+            embedColor = "#FF0000"
         } else {
+            isnotMe = true 
+        }
+
+        if (isnotMe) {
+            embedColor = user.accentColor
             if (user.bot) {
                 isaBot = "`Nah.`"
             } else {
@@ -35,7 +43,7 @@ module.exports = {
 
         const infoEmbed = MessageEmbed()
             .setTitle(`${embedTitle}`)
-            .setColor(user.accentColor)
+            .setColor(embedColor)
             .setThumbnail(user.avatarURL())
             .addField("General info:", `Is it a bot? ${isaBot}\nWhen was this account created? \`${user.createdAt.now()}\`\nIs it member of this server? ${isaMember}`)
             
