@@ -14,8 +14,6 @@ module.exports = {
         let isaMember = null
         let isnotMe = false 
 
-        console.log(typeof user.id)
-
         if (user.id === botId) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
             isaBot = "`If your puny little mind thinks I'm not a bot then consider going to a mental hospital.`"
@@ -32,7 +30,7 @@ module.exports = {
             } else {
                 isaBot = "`Yup, just like me.`"
             }
-            interaction.guild.member.fetch(user.id)
+            interaction.guild.members.fetch(user.id)
                 .then(() => isaMember = "`Yes. (He/She could be stalking you, better watch out.)`")
                 .catch(() => isaMember = "`Nah.`")
         }
