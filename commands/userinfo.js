@@ -35,7 +35,7 @@ module.exports = {
                 .catch(() => isaMember = "`Nah.`")
         }
 
-        const infoEmbed = MessageEmbed()
+        const infoEmbed = new MessageEmbed()
             .setTitle(`${embedTitle}`)
             .setColor(embedColor)
             .setThumbnail(user.avatarURL())
