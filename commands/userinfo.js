@@ -1,8 +1,8 @@
-const { MessageEmbed} = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
-    data: SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
+    data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
         .addUserOption((option) => {
             option.setName("user").setDescription("The user to get info from.")
         }),
