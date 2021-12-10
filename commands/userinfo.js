@@ -14,6 +14,8 @@ module.exports = {
         let isaMember = null
         let isnotMe = false 
 
+        console.log(typeof user.id)
+
         if (user.id === botId) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
             isaBot = "`If your puny little mind thinks I'm not a bot then consider going to a mental hospital.`"
@@ -39,7 +41,7 @@ module.exports = {
             .setTitle(`${embedTitle}`)
             .setColor(embedColor)
             .setThumbnail(user.avatarURL())
-            .addField("General info:", `> Is it a bot?\n    **->** ${isaBot}\n> When was this account created?\n    **->** \`${user.createdAt.now}\`\n> Is it member of this server?\n  **->** ${isaMember}`)
+            .addField("General info:", `> Is it a bot?\n**->** ${isaBot}\n> When was this account created?\n**->** \`${user.createdAt.prototype.getDate()}\`\n> Is it member of this server?\n**->** ${isaMember}`)
             
         await interaction.reply({ embeds: [ infoEmbed ] })
     }
