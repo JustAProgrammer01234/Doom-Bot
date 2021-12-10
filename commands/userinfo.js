@@ -39,7 +39,7 @@ module.exports = {
             .setTitle(`${embedTitle}`)
             .setColor(embedColor)
             .setThumbnail(user.avatarURL())
-            .addField("General info:", `Is it a bot? ${isaBot}\nWhen was this account created? \`${user.createdAt.now()}\`\nIs it member of this server? ${isaMember}`)
+            .addField("General info:", `Is it a bot? ${isaBot}\nWhen was this account created? \`${user.createdAt.now}\`\nIs it member of this server? ${isaMember}`)
             
         await interaction.reply({ embeds: [ infoEmbed ] })
     }
