@@ -30,7 +30,7 @@ module.exports = {
             } else {
                 isaBot = "`Yup, just like me.`"
             }
-            await interaction.guild.member.fetch(user.id)
+            interaction.guild.member.fetch(user.id)
                 .then(() => isaMember = "`Yes. (He/She could be stalking you, better watch out.)`")
                 .catch(() => isaMember = "`Nah.`")
         }
@@ -39,7 +39,7 @@ module.exports = {
             .setTitle(`${embedTitle}`)
             .setColor(embedColor)
             .setThumbnail(user.avatarURL())
-            .addField("General info:", `Is it a bot? ${isaBot}\nWhen was this account created? \`${user.createdAt.now}\`\nIs it member of this server? ${isaMember}`)
+            .addField("General info:", `Is it a bot?\n**->**${isaBot}\nWhen was this account created?\n**->**\`${user.createdAt.now}\`\nIs it member of this server?\n**->**${isaMember}`)
             
         await interaction.reply({ embeds: [ infoEmbed ] })
     }
