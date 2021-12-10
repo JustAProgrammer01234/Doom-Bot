@@ -9,7 +9,6 @@ module.exports = {
         const user = interaction.options.getUser("user")
 
         let embedTitle = null
-        let embedColor = null
         let isaBot = null
         let isaMember = null
         let isnotMe = false 
@@ -18,17 +17,16 @@ module.exports = {
             embedTitle = `About ${user.username}: (Hey that's me!)`
             isaBot = "`If your puny little mind thinks I'm not a bot then consider going to a mental hospital.`"
             isaMember = "`That should be self explanatory.`"
-            embedColor = "#FF0000"
         } else {
             isnotMe = true 
         }
 
         if (isnotMe) {
-            embedColor = user.accentColor
+            embedTitle = `About ${user.username}:`
             if (user.bot) {
-                isaBot = "`Nah.`"
-            } else {
                 isaBot = "`Yup, just like me.`"
+            } else {
+                isaBot = "`Nah.`" 
             }
             interaction.guild.members.fetch(user.id)
                 .then(() => isaMember = "`Yes. (He/She could be stalking you, better watch out.)`")
@@ -37,7 +35,7 @@ module.exports = {
 
         const infoEmbed = new MessageEmbed()
             .setTitle(`${embedTitle}`)
-            .setColor(embedColor)
+            .setColor("#FF0000")
             .setThumbnail(user.avatarURL())
             .addField("General info:", `> Is it a bot?\n**->** ${isaBot}\n> When was this account created?\n**->** \`${user.createdAt.getDate()}\`\n> Is it member of this server?\n**->** ${isaMember}`)
             
