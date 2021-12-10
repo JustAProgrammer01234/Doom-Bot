@@ -3,9 +3,9 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
-        .addUserOption((option) => {
-            option.setName("user").setDescription("The user to get info from.")
-        }),
+            .addUserOption((option) => {
+                option.setName("user").setDescription("The user to get info from.")
+            }),
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
@@ -33,12 +33,12 @@ module.exports = {
                 isaBot = "`Yup, just like me.`"
             }
             await interaction.guild.member.fetch(user.id)
-            .then(() => {
-                isaMember = "`Yes. (He/She could be stalking you, better watch out.)`"
-            })
-            .catch(() => {
-                isaMember = "`Nah.`"
-            })
+                .then(() => {
+                    isaMember = "`Yes. (He/She could be stalking you, better watch out.)`"
+                })
+                .catch(() => {
+                    isaMember = "`Nah.`"
+                })
         }
 
         const infoEmbed = MessageEmbed()
