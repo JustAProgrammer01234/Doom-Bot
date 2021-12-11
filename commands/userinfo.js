@@ -31,14 +31,12 @@ module.exports = {
             interaction.guild.members.fetch(user.id)
                 .then((guildMember) => {
                     isaMember = true
-                    console.log(isaMember) 
                 })
                 .catch((error) => {
                     isaMember = false 
-                    console.log(isaMember)
                 })
         }
-
+        console.log(isaMember) 
         const infoEmbed = new MessageEmbed()
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
