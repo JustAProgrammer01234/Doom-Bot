@@ -28,11 +28,9 @@ module.exports = {
             } else {
                 isaBot = "`Nah.`" 
             }
-            if (interaction.guild.members.fetch(user.id)) {
-                isaMember = "`Yes. (He/She could be stalking you, better watch out.)`"
-            } else {
-                isaMember = "`Nah.`"
-            }
+            interaction.guild.members.fetch(user.id)
+                .then(() => isaMember = true)
+                .catch(() => isaMember = false)
         }
 
         const infoEmbed = new MessageEmbed()
