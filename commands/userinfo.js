@@ -8,10 +8,10 @@ module.exports = {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
 
-        let embedTitle = null
-        let isaBot = null
-        let isaMember = null
-        let isnotMe = false 
+        let embedTitle
+        let isaBot
+        let isaMember
+        let isnotMe 
 
         if (user.id === botId) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
@@ -36,7 +36,7 @@ module.exports = {
                     isaMember = false 
                 })
         }
-        console.log(isaMember) 
+
         const infoEmbed = new MessageEmbed()
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
