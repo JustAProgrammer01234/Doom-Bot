@@ -30,10 +30,12 @@ module.exports = {
             }
             interaction.guild.members.fetch(user.id)
                 .then((guildMember) => {
-                    isaMember = true 
+                    isaMember = true
+                    console.log(isaMember) 
                 })
                 .catch((error) => {
                     isaMember = false 
+                    console.log(isaMember)
                 })
         }
 
