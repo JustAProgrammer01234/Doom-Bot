@@ -2,7 +2,7 @@ const fs = require("fs")
 const {Client, Intents, Collection, MessageEmbed} = require("discord.js")
 const token = process.env.TOKEN
 
-const doomBot = new Client({ intents: [Intents.FLAGS.GUILDS] })
+const doomBot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] })
 doomBot.commands = new Collection()
 
 const cmd_files = fs.readdirSync("./commands")
