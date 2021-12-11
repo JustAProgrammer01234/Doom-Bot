@@ -29,8 +29,12 @@ module.exports = {
                 isaBot = "`Nah.`" 
             }
             interaction.guild.members.fetch(user.id)
-                .then(console.log)
-                .catch(console.error)
+                .then((guildMember) => {
+                    isaMember = true 
+                })
+                .catch((error) => {
+                    isaMember = false 
+                })
         }
 
         const infoEmbed = new MessageEmbed()
