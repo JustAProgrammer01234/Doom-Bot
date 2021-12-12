@@ -7,6 +7,7 @@ module.exports = {
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
+        const createdTimestamp = Math.round(user.createdTimestamp / 1000)
 
         let embedTitle
         let isaBot
@@ -41,7 +42,7 @@ module.exports = {
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.avatarURL())
-            .addField("General info:", `> Is it a bot?\n**->** ${isaBot}\n> When was this account created?\n**->** <t:${user.createdTimestamp}:F>\n> Is it member of this server?\n**->** ${isaMember}`)
+            .addField("General info:", `> Is it a bot?\n**->** ${isaBot}\n> When was this account created?\n**->** <t:${createdTimestamp}:F>\n> Is it member of this server?\n**->** ${isaMember}`)
     
         await interaction.reply({ embeds: [ infoEmbed ] })
     }
