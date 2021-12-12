@@ -10,8 +10,8 @@ module.exports = {
 
         let embedTitle
         let isaBot
-        let isaMember
         let isnotMe 
+        let isaMember
 
         if (user.id === botId) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
@@ -28,13 +28,12 @@ module.exports = {
             } else {
                 isaBot = "`Nah.`" 
             }
-            interaction.guild.members.fetch(user.id)
-                .then((guildMember) => {
-                    isaMember = true
-                    return guildMember
+            isaMember = await interaction.guild.members.fetch(user.id)
+                .then(() => {
+                    return "`Yes. (He/She could be stalking you, better watch out.)`"
                 })
-                .catch((error) => {
-                    isaMember = false 
+                .catch(() => {
+                    return "`Nah.`"
                 })
         }
 
