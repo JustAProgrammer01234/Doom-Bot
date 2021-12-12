@@ -40,6 +40,7 @@ module.exports = {
 
         const infoEmbed = new MessageEmbed()
             .setTitle(`${embedTitle}`)
+            .setAuthor(`${user.username}#${user.discriminator}`, user.avatarURL())
             .setColor("#FF0000")
             .setThumbnail(user.avatarURL())
             .addField("General info:", `> Is it a bot?\n**->** ${isaBot}\n> When was this account created?\n**->** <t:${createdTimestamp}:F>\n> Is it member of this server?\n**->** ${isaMember}`)
