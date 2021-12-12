@@ -7,7 +7,7 @@ module.exports = {
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
-        const createdTimestamp = Math.round(user.createdTimestamp/ 1000)
+        const createdTimestamp = Math.round(user.createdTimestamp / 1000)
 
         let embedTitle
         let isaBot
