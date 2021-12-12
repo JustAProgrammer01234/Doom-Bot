@@ -43,7 +43,11 @@ module.exports = {
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
-            .addField("General info:", `> Is it a bot?\n**->** ${isaBot}\n> When was this account created?\n**->** <t:${createdTimestamp}:F>\n> Is it member of this server?\n**->** ${isaMember}`)
+            .addFields(
+                { name: "Is it a bot?", value: `**->** ${isaBot}` },
+                { name: "When was this account created?", value: `**->** <t:${createdTimestamp}:F>`},
+                { name: "Is it a member of this server?", value: `**->** ${isaMember}`}
+            )
             .setTimestamp()
     
         await interaction.reply({ embeds: [ infoEmbed ] })
