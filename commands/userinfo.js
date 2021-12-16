@@ -57,6 +57,11 @@ module.exports = {
             let status = memberObject.presence.status
             let activity = memberObject.presence.activities
             let joinedTimestamp = Math.round(memberObject.joinedTimestamp / 1000)
+
+            for (const act of activity) {
+                console.log(act)
+            }
+
             infoEmbed.addFields(
                 { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
                 { name: "Status:", value: `\`${status}\``},
