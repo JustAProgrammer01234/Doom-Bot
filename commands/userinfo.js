@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
             .addUserOption((option) => option.setName("user").setDescription("The user to get info from.")),
-    execute: async (interaction, client) => {
+    execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
         const createdTimestamp = Math.round(user.createdTimestamp / 1000)
