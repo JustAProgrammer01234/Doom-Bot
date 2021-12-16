@@ -39,8 +39,6 @@ module.exports = {
                 })
         }
 
-        console.log(memberObject)
-
         const infoEmbed = new MessageEmbed()
             .setAuthor(`${user.username}#${user.discriminator}`, user.displayAvatarURL())
             .setTitle(`${embedTitle}`)
