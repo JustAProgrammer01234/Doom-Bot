@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders") 
 
 module.exports = {
-    data: SlashCommandBuilder().setName("profile").setDescription("Sends the profile of a user.")
+    data: new SlashCommandBuilder().setName("profile").setDescription("Sends the profile of a user.")
         .addUserOption((option) => option.setName("user").setDescription("The user to get the profile from.")),
     execute: async (interaction) => {
         const user = interaction.options.getUser("user")
