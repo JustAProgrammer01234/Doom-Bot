@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed, GuildMember } = require('discord.js')
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
             }
             [isaMember, memberObject] = await interaction.guild.members.fetch(user.id)
                 .then((data) => {
-                    return ["`Yes. (He/She/It could be stalking you, better watch out.)`", data]
+                    return ["`Yes. (They could be stalking you, better watch out.)`", data]
                 })
                 .catch(() => {
                     return ["`Nah.`", null]
@@ -45,13 +45,13 @@ module.exports = {
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
             .addFields(
-                { name: "Is he/she/it a bot?", value: `${isaBot}` },
+                { name: "Are they a bot?", value: `${isaBot}` },
                 { name: "Are they a member of this server?", value: `${isaMember}`},
                 { name: "When was this account created?", value: `<t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`}
             )
             .setTimestamp()
 
-        if (!memberObject) {
+        if (memberObject instanceof GuildMember) {
             let status = memberObject.presence.status
             let activity = memberObject.presence.activities
             let joinedTimestamp = Math.round(memberObject.joinedTimestamp / 1000)
