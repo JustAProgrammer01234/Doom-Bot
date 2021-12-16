@@ -42,7 +42,7 @@ module.exports = {
         console.log(memberObject)
 
         const infoEmbed = new MessageEmbed()
-            .setAuthor(`${user.username}#${user.discriminator}`, user.displayAvatarURL())
+            .setAuthor(`${user.username}#${user.discriminator}|ID: ${user.id}`, user.displayAvatarURL())
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
