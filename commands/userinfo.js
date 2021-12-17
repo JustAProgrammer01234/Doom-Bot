@@ -58,7 +58,7 @@ module.exports = {
             let activityList = []
 
             for (const act of activity) {
-                if (!act.type == "CUSTOM") {
+                if (act.type != "CUSTOM") {
                     activityList.push(`**${act.type}:** \`${act.name}\``)
                 }
             }
