@@ -39,8 +39,6 @@ module.exports = {
                 })
         }
 
-        console.log(memberObject)
-
         const infoEmbed = new MessageEmbed()
             .setAuthor(`${user.username}#${user.discriminator}|ID: ${user.id}`, user.displayAvatarURL())
             .setTitle(`${embedTitle}`)
@@ -60,7 +58,7 @@ module.exports = {
             let activityList = []
 
             for (const act of activity) {
-                activityList.push(`${act.type}: ${act.name}`)
+                activityList.push(`**${act.type}:** \`${act.name}\``)
             }
 
             infoEmbed.addFields(
