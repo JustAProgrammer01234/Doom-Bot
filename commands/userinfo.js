@@ -58,7 +58,9 @@ module.exports = {
             let activityList = []
 
             for (const act of activity) {
-                activityList.push(`**${act.type}:** \`${act.name}\``)
+                if (!act.type == "CUSTOM") {
+                    activityList.push(`**${act.type}:** \`${act.name}\``)
+                }
             }
 
             infoEmbed.addFields(
