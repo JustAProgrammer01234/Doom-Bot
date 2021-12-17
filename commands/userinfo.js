@@ -57,15 +57,16 @@ module.exports = {
             let status = memberObject.presence.status
             let activity = memberObject.presence.activities
             let joinedTimestamp = Math.round(memberObject.joinedTimestamp / 1000)
+            let activityList = []
 
             for (const act of activity) {
-                console.log(act)
+                activityList.push(`${act.type}: ${act.name}`)
             }
 
             infoEmbed.addFields(
                 { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
                 { name: "Status:", value: `\`${status}\``},
-                { name: "Activity:", value: `\`${activity}\``}
+                { name: "Activity:", value: cmd_list.join("\n")}
             )
         } else {
             infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")
