@@ -66,7 +66,7 @@ module.exports = {
             infoEmbed.addFields(
                 { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
                 { name: "Status:", value: `\`${status}\``},
-                { name: "Activity:", value: cmd_list.join("\n")}
+                { name: "Activity:", value: activityList.join("\n")}
             )
         } else {
             infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")
