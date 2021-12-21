@@ -19,7 +19,7 @@ const doomBot = new Client({
 
 for (const file of cmdFiles) {
     const command = require(`./commands/${file}`)
-    doomBot.commands.set(command.data.name, command)
+    commands.set(command.data.name, command)
 }
 
 doomBot.once("ready", () => {
