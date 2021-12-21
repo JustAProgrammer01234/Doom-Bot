@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
-            .addUserOption((option) => option.setName("user").setDescription("The user to get info from.")),
+            .addUserOption((option) => option.setName("user").setDescription("The user to get info from.").setRequired(true)),
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
@@ -72,7 +72,7 @@ module.exports = {
                 { name: "Status:", value: `\`${status}\``},
                 { name: "Activity:", value: activityList.join("\n")}
             )
-            
+
         } else {
             infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")
         }
