@@ -57,10 +57,14 @@ module.exports = {
             let joinedTimestamp = Math.round(memberObject.joinedTimestamp / 1000)
             let activityList = []
 
-            for (const act of activity) {
-                if (act.type != "CUSTOM") {
-                    activityList.push(`**${act.type}:** \`${act.name}\``)
+            if (activity.length > 0) {
+                for (const act of activity) {
+                    if (act.type != "CUSTOM") {
+                        activityList.push(`**${act.type}:** \`${act.name}\``)
+                    }
                 }
+            } else {
+                activityList.push(`\`They aren't doing anything yet LMAO.\``)
             }
 
             infoEmbed.addFields(
