@@ -72,6 +72,7 @@ module.exports = {
                 { name: "Status:", value: `\`${status}\``},
                 { name: "Activity:", value: activityList.join("\n")}
             )
+            
         } else {
             infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")
         }
