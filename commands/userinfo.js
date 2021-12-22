@@ -7,7 +7,7 @@ module.exports = {
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
-        const createdTimestamp = SnowflakeUtil.deconstruct(user.id).timestamp
+        const createdTimestamp = Math.floor(user.createdTimestamp / 1000)
 
         let embedTitle
         let isaBot
@@ -17,7 +17,7 @@ module.exports = {
 
         if (user.id === botId) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
-            isaBot = "`If your puny little mind thinks I'm not a bot then consider going to a mental hospital.`"
+            isaBot = "`If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.`"
             isaMember = "`That should be self explanatory.`"
         } else {
             isnotMe = true 
@@ -40,21 +40,21 @@ module.exports = {
         }
 
         const infoEmbed = new MessageEmbed()
-            .setAuthor(`${user.username}#${user.discriminator}|ID: ${user.id}`, user.displayAvatarURL())
+            .setAuthor(`${user.username}#${user.discriminator} | ID: ${user.id}`, user.displayAvatarURL())
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
             .addFields(
                 { name: "Are they a bot?", value: `${isaBot}` },
                 { name: "Are they a member of this server?", value: `${isaMember}`},
-                { name: "When was this account created?", value: `<t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`}
+                { name: "When was this account created? \:clock:", value: `<t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`}
             )
             .setTimestamp()
 
         if (memberObject instanceof GuildMember) {
             let status = memberObject.presence.status
             let activity = memberObject.presence.activities
-            let joinedTimestamp = Math.round(memberObject.joinedTimestamp / 1000)
+            let joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
             let activityList = []
 
             if (activity.length > 0) {
