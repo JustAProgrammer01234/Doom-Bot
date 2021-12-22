@@ -1,4 +1,4 @@
-const { MessageEmbed, GuildMember } = require('discord.js')
+const { MessageEmbed, GuildMember, SnowflakeUtil } = require('discord.js')
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
-        const createdTimestamp = Math.round(user.createdTimestamp / 1000)
+        const createdTimestamp = SnowFlakeUtil().deconstruct(user.id).timestamp
 
         let embedTitle
         let isaBot
