@@ -47,7 +47,7 @@ module.exports = {
             .addFields(
                 { name: "Are they a bot?", value: `${isaBot}` },
                 { name: "Are they a member of this server?", value: `${isaMember}`},
-                { name: "When was this account created? \:clock:", value: `<t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`}
+                { name: "When was this account created?", value: `<t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`}
             )
             .setTimestamp()
 
