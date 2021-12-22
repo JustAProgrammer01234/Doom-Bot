@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
     execute: async (interaction) => {
         const cmdList = []
-        const commands = await interaction.client.appliation.commands.fetch()
+        const commands = await interaction.client.application.commands.fetch()
             .then((cmds) => {
                 return cmds
             })
