@@ -12,7 +12,7 @@ module.exports = {
             .catch(console.error)
 
         for (const cmd of commands) {
-            cmd_list.push(`\`/${cmd.name}\` **->** ${cmd.description}`)
+            cmdList.push(`\`/${cmd.name}\` **->** ${cmd.description}`)
         }
 
         helpEmbed = new MessageEmbed()
