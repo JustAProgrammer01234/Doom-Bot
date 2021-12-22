@@ -18,8 +18,10 @@ const doomBot = new Client({
 })
 
 for (const file of cmdFiles) {
+    const cmdName = command.data.name
+    console.log(`Loading command: ${cmdName}`)
     const command = require(`./commands/${file}`)
-    commands.set(command.data.name, command)
+    commands.set(cmdName, command)
 }
 
 doomBot.once("ready", () => {
