@@ -7,7 +7,7 @@ module.exports = {
     execute: async (interaction) => {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
-        const createdTimestamp = new SnowflakeUtil().deconstruct(user.id).timestamp
+        const createdTimestamp = SnowflakeUtil.deconstruct(user.id).timestamp
 
         let embedTitle
         let isaBot
