@@ -8,8 +8,8 @@ const commands = []
 const commandFiles = fs.readdirSync('./commands')
 
 for (const file of commandFiles) {
-	console.log(`Loading command: ${file.data.name}`)
 	const command = require(`./commands/${file}`)
+	console.log(`Loading command: ${command.data.name}`)
 	commands.push(command.data.toJSON())
 }
 
