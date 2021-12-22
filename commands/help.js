@@ -11,6 +11,8 @@ module.exports = {
             })
             .catch(console.error)
 
+        console.log(commands)
+
         for (const cmd of commands) {
             cmdList.push(`\`/${cmd.name}\` **->** ${cmd.description}`)
         }
