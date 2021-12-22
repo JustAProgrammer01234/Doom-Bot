@@ -13,7 +13,7 @@ module.exports = {
 
         console.log(commands)
 
-        for (const cmd of commands) {
+        for (const cmd of commands.values()) {
             cmdList.push(`\`/${cmd.name}\` **->** ${cmd.description}`)
         }
 
