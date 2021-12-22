@@ -35,8 +35,7 @@ module.exports = {
                 .then((data) => {
                     return ["`Yes. (They could be stalking you, better watch out.)`", data]
                 })
-                .catch((error) => {
-                    console.log(error)
+                .catch(() => {
                     return ["`Nah.`", null]
                 })
         }
