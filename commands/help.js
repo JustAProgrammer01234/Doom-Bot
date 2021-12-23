@@ -4,15 +4,14 @@ const { MessageEmbed } = require("discord.js")
 module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
     execute: async (interaction) => {
-        const cmdList = []
         const commands = await interaction.client.application.commands.fetch()
             .then((cmds) => {
                 return cmds
             })
-            .catch(console.error)
+        let cmdList = ""
             
         for (const cmd of commands.values()) {
-            cmdList.push(`\`/${cmd.name}\` **->** ${cmd.description}`)
+            cmdList += `\`/${cmd.name}\` **->** ${cmd.description}\n`
         }
 
         helpEmbed = new MessageEmbed()

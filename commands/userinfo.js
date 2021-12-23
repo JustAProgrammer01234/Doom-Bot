@@ -54,24 +54,25 @@ module.exports = {
 
         if (memberObject instanceof GuildMember) {
             const status = memberObject.presence?.status
-            const activity = memberObject.presence.activities
+            const activity = memberObject.presence?.activities
             const joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
-            const activityList = []
+             
+            let activityList = ""
 
-            if (activity.length > 0) {
+            if (activity.length > 0 || activity == null) {
                 for (const act of activity) {
                     if (act.type != "CUSTOM") {
-                        activityList.push(`**${act.type}:** \`${act.name}\``)
+                        activityList += `**${act.type}:** \`${act.name}\`\n`
                     }
                 }
             } else {
-                activityList.push(`\`They aren't doing anything yet LMAO.\``)
+                activityList += `\`They aren't doing anything yet LMAO.\``
             }
 
             infoEmbed.addFields(
                 { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
                 { name: "Status:", value: `\`${status}\``},
-                { name: "Activity:", value: activityList.join("\n")}
+                { name: "Activities doing:", value: activityList}
             )
 
         } else if (isBot) {
