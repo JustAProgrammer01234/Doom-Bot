@@ -53,7 +53,7 @@ module.exports = {
             .setTimestamp()
 
         if (memberObject instanceof GuildMember) {
-            const status = memberObject.presence?.status
+            const status = (!memberObject.presence) ? "offline":memberObject.presence.status
             const activity = memberObject.presence?.activities
             const joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
              
@@ -63,7 +63,7 @@ module.exports = {
                 if (activity.length > 0) {
                     for (const act of activity) {
                         if (act.type != "CUSTOM") {
-                            activityList += `**${act.type}:** \`${act.name}\`\n`
+                            activitiesDoing += `**${act.type}:** \`${act.name}\`\n`
                         }
                     }
                 } else {
