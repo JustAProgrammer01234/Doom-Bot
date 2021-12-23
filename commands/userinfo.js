@@ -57,22 +57,26 @@ module.exports = {
             const activity = memberObject.presence?.activities
             const joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
              
-            let activityList = ""
+            let activitiesDoing = ""
 
-            if (activity.length > 0 || activity == null) {
-                for (const act of activity) {
-                    if (act.type != "CUSTOM") {
-                        activityList += `**${act.type}:** \`${act.name}\`\n`
+            if (activity instanceof Array) {
+                if (activity.length > 0) {
+                    for (const act of activity) {
+                        if (act.type != "CUSTOM") {
+                            activityList += `**${act.type}:** \`${act.name}\`\n`
+                        }
                     }
+                } else {
+                    activitiesDoing += `\`They aren't doing anything yet LMAO.\``
                 }
             } else {
-                activityList += `\`They aren't doing anything yet LMAO.\``
+                activitiesDoing += `\`They aren't doing anything yet since they're REALLY offline.\``
             }
 
             infoEmbed.addFields(
                 { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
                 { name: "Status:", value: `\`${status}\``},
-                { name: "Activities doing:", value: activityList}
+                { name: "Activities doing:", value: activitiesDoing}
             )
 
         } else if (isBot) {
