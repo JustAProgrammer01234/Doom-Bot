@@ -17,7 +17,7 @@ module.exports = {
         helpEmbed = new MessageEmbed()
             .setTitle("All help is down below!")
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
-            .addField("Commands:", cmdList.join("\n"))
+            .addField("Commands:", cmdList)
             .setColor("#FF0000")
         await interaction.reply({ embeds: [ helpEmbed ] })
     }
