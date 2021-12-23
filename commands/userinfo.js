@@ -40,8 +40,6 @@ module.exports = {
                 })
         }
 
-        console.log(memberObject)
-
         const infoEmbed = new MessageEmbed()
             .setAuthor(`${user.username}#${user.discriminator} | ID: ${user.id}`, user.displayAvatarURL())
             .setTitle(`${embedTitle}`)
@@ -55,10 +53,10 @@ module.exports = {
             .setTimestamp()
 
         if (memberObject instanceof GuildMember) {
-            let status = memberObject.presence.status
-            let activity = memberObject.presence.activities
-            let joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
-            let activityList = []
+            const status = memberObject.presence?.status
+            const activity = memberObject.presence.activities
+            const joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
+            const activityList = []
 
             if (activity.length > 0) {
                 for (const act of activity) {
