@@ -1,5 +1,5 @@
 const { MessageEmbed, GuildMember } = require('discord.js')
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder, quote } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
@@ -72,9 +72,9 @@ module.exports = {
                 activitiesDoing += `\`They aren't doing anything yet since they're REALLY offline.\``
             }
 
+            infoEmbed.setDescription(`Status: ${status}\nRoles assigned: ${memberObject.roles.cache.size}`)
             infoEmbed.addFields(
                 { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
-                { name: "Status:", value: `\`${status}\``},
                 { name: "Activities doing:", value: activitiesDoing}
             )
         } else if (isBot) {
