@@ -54,17 +54,16 @@ module.exports = {
 
         if (memberObject instanceof GuildMember) {
             const status = (!memberObject.presence) ? "offline":memberObject.presence.status
-            const activity = memberObject.presence?.activities
             const joinedTimestamp = Math.floor(memberObject.joinedTimestamp / 1000)
              
+            let activity = memberObject.presence?.activities
             let activitiesDoing = ""
 
             if (activity instanceof Array) {
+                activity = activity.slice(1)
                 if (activity.length > 0) {
                     for (const act of activity) {
-                        if (act.type != "CUSTOM") {
-                            activitiesDoing += `**${act.type}:** \`${act.name}\`\n`
-                        }
+                        activitiesDoing += `**${act.type}:** \`${act.name}\`\n`
                     }
                 } else {
                     activitiesDoing += `\`They aren't doing anything yet LMAO.\``
@@ -78,7 +77,6 @@ module.exports = {
                 { name: "Status:", value: `\`${status}\``},
                 { name: "Activities doing:", value: activitiesDoing}
             )
-
         } else if (isBot) {
             infoEmbed.setFooter("For more info about me try using the /botinfo command.")
         } else {
