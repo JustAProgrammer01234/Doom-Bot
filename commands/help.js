@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder, quote, bold } = require("@discordjs/builders")
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         let cmdList = ""
             
         for (const cmd of commands.values()) {
-            cmdList += `\`/${cmd.name}\` **->** ${cmd.description}\n`
+            cmdList += `${quote(cmd.name)} ${bold("->")} ${cmd.description}\n`
         }
 
         helpEmbed = new MessageEmbed()

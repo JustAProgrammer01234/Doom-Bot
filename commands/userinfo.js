@@ -1,5 +1,5 @@
 const { MessageEmbed, GuildMember } = require('discord.js')
-const { SlashCommandBuilder, quote } = require("@discordjs/builders")
+const { SlashCommandBuilder, quote, bold, time } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
@@ -18,8 +18,8 @@ module.exports = {
 
         if (isBot) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
-            isaBot = "`If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.`"
-            isaMember = "`That should be self explanatory.`"
+            isaBot = quote("If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.")
+            isaMember = quote("That should be self explanatory.")
         } else {
             isnotMe = true 
         }
@@ -27,9 +27,9 @@ module.exports = {
         if (isnotMe) {
             embedTitle = `About ${user.username}:`
             if (user.bot) {
-                isaBot = "`Yup, just like me.`"
+                isaBot = quote("Yup, just like me.")
             } else {
-                isaBot = "`Nah.`" 
+                isaBot = quote("Nah.")
             }
             [isaMember, memberObject] = await interaction.guild.members.fetch(user.id)
                 .then((data) => {
@@ -48,7 +48,7 @@ module.exports = {
             .addFields(
                 { name: "Are they a bot?", value: `${isaBot}` },
                 { name: "Are they a member of this server?", value: `${isaMember}`},
-                { name: "When was this account created?", value: `<t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`}
+                { name: "When was this account created?", value: `${time(createdTimestamp, "F")} (${time(createdTimestamp, "R")})`}
             )
             .setTimestamp()
 
@@ -63,18 +63,18 @@ module.exports = {
                 activity = activity.slice(1)
                 if (activity.length > 0) {
                     for (const act of activity) {
-                        activitiesDoing += `**${act.type}:** \`${act.name}\`\n`
+                        activitiesDoing += `${bold(act.type)}: ${quote(act.name)}\n`
                     }
                 } else {
-                    activitiesDoing += `\`They aren't doing anything yet LMAO.\``
+                    activitiesDoing += quote("They aren't doing anything yet LMAO.")
                 }
             } else {
-                activitiesDoing += `\`They aren't doing anything yet since they're REALLY offline.\``
+                activitiesDoing += quote("They aren't doing anything yet since they're REALLY offline.")
             }
 
             infoEmbed.setDescription(`Status: ${status}\nRoles assigned: ${memberObject.roles.cache.size}`)
             infoEmbed.addFields(
-                { name: "When did they join this server?", value: `<t:${joinedTimestamp}:F> (<t:${joinedTimestamp}:R>)`},
+                { name: "When did they join this server?", value: `${time(joinedTimestamp, "F")} (${time(joinedTimestamp, "R")})`},
                 { name: "Activities doing:", value: activitiesDoing}
             )
         } else if (isBot) {
