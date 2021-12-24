@@ -4,7 +4,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 module.exports = {
     data: new SlashCommandBuilder().setName("botinfo").setDescription("Sends info about the bot (which is me btw)."),
     execute: async (interaction) => {
-        const botinfoEmbed = MessageEmbed()
+        const botinfoEmbed = new MessageEmbed()
             .setTitle("Some info about me:")
             .setDescription("Never gonna give you up.")
             .setColor("#FF0000")
