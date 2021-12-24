@@ -8,7 +8,7 @@ module.exports = {
         const botId = interaction.client.user.id
         const user = interaction.options.getUser("user")
         const createdTimestamp = Math.floor(user.createdTimestamp / 1000)
-        const isBot = user.id === botId
+        const isMe = user.id === botId
 
         let embedTitle
         let isaBot
@@ -16,7 +16,7 @@ module.exports = {
         let isaMember
         let memberObject
 
-        if (isBot) {
+        if (isMe) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
             isaBot = inlineCode("If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.")
             isaMember = inlineCode("That should be self explanatory.")
@@ -77,7 +77,7 @@ module.exports = {
                 { name: "When did they join this server?", value: `${time(joinedTimestamp, "F")} (${time(joinedTimestamp, "R")})`},
                 { name: "Activities doing:", value: activitiesDoing}
             )
-        } else if (isBot) {
+        } else if (isMe) {
             infoEmbed.setFooter("For more info about me try using the /botinfo command.")
         } else {
             infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")

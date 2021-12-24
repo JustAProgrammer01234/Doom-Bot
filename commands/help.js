@@ -11,7 +11,7 @@ module.exports = {
         let cmdList = ""
             
         for (const cmd of commands.values()) {
-            cmdList += `${inlineCode(cmd.name)} ${bold("->")} ${cmd.description}\n`
+            cmdList += `${inlineCode(`/${cmd.name}`)} ${bold("->")} ${cmd.description}\n`
         }
 
         helpEmbed = new MessageEmbed()
