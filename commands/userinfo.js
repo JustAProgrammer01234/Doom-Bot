@@ -1,5 +1,5 @@
-const { MessageEmbed, GuildMember } = require('discord.js')
 const { SlashCommandBuilder, inlineCode, bold, time } = require("@discordjs/builders")
+const { MessageEmbed, GuildMember } = require('discord.js')
 
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
