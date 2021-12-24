@@ -1,5 +1,5 @@
 const { MessageEmbed, GuildMember } = require('discord.js')
-const { SlashCommandBuilder, quote, bold, time } = require("@discordjs/builders")
+const { SlashCommandBuilder, inlineCode, bold, time } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
@@ -18,8 +18,8 @@ module.exports = {
 
         if (isBot) {
             embedTitle = `About ${user.username}: (Hey that's me!)`
-            isaBot = quote("If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.")
-            isaMember = quote("That should be self explanatory.")
+            isaBot = inlineCode("If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.")
+            isaMember = inlineCode("That should be self explanatory.")
         } else {
             isnotMe = true 
         }
@@ -27,9 +27,9 @@ module.exports = {
         if (isnotMe) {
             embedTitle = `About ${user.username}:`
             if (user.bot) {
-                isaBot = quote("Yup, just like me.")
+                isaBot = inlineCode("Yup, just like me.")
             } else {
-                isaBot = quote("Nah.")
+                isaBot = inlineCode("Nah.")
             }
             [isaMember, memberObject] = await interaction.guild.members.fetch(user.id)
                 .then((data) => {
@@ -63,13 +63,13 @@ module.exports = {
                 activity = activity.slice(1)
                 if (activity.length > 0) {
                     for (const act of activity) {
-                        activitiesDoing += `${bold(act.type)}: ${quote(act.name)}\n`
+                        activitiesDoing += `${bold(act.type)}: ${inlineCode(act.name)}\n`
                     }
                 } else {
-                    activitiesDoing += quote("They aren't doing anything yet LMAO.")
+                    activitiesDoing += inlineCode("They aren't doing anything yet LMAO.")
                 }
             } else {
-                activitiesDoing += quote("They aren't doing anything yet since they're REALLY offline.")
+                activitiesDoing += inlineCode("They aren't doing anything yet since they're REALLY offline.")
             }
 
             infoEmbed.setDescription(`Status: ${status}\nRoles assigned: ${memberObject.roles.cache.size}`)
