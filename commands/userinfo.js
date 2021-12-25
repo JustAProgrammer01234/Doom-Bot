@@ -82,7 +82,6 @@ module.exports = {
         } else {
             infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")
         }
-    
         await interaction.reply({ embeds: [ infoEmbed ] })
     }
 }

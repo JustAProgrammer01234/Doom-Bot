@@ -5,15 +5,11 @@ module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
     execute: async (interaction) => {
         const commands = await interaction.client.application.commands.fetch()
-            .then((cmds) => {
-                return cmds
-            })
+            .then((cmds) => {return cmds})
         let cmdList = ""
-            
         for (const cmd of commands.values()) {
             cmdList += `${inlineCode(`/${cmd.name}`)} ${bold("->")} ${cmd.description}\n`
         }
-
         helpEmbed = new MessageEmbed()
             .setTitle("All help is down below!")
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
