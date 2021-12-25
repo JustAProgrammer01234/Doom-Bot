@@ -10,8 +10,8 @@ module.exports = {
         const botinfoEmbed = new MessageEmbed()
             .setTitle("Some info about me:")
             .setDescription(`Creator: ${strikethrough("Davoth")} ${doomBot.application.owner.username}
-            Started logging into discord at: ${time(Math.floor(readyAt, "F"))} ${time(Math.floor(readyAt, "R"))}
-            Servers I'm in: ${doomBot.guilds}`)
+            Started logging into discord at: ${time(Math.floor(readyAt), "F")} ${time(Math.floor(readyAt), "R")}
+            Servers I'm in: ${doomBot.guilds.cache.size}`)
             .setColor("#FF0000")
             .setThumbnail(doomBot.user.avatarURL())
 
