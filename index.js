@@ -21,8 +21,9 @@ for (const file of cmdFiles) {
     commands.set(cmdName, command)
 }
 
-doomBot.once("ready", () => {
+doomBot.once("ready", async () => {
     console.log("Ready to RIP AND TEAR!")
+    await doomBot.application.fetch()
 })
 
 doomBot.on("interactionCreate", async (interaction) => {
