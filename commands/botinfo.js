@@ -8,10 +8,10 @@ module.exports = {
         const readyAt = Math.floor(doomBot.readyTimestamp / 1000)
         const botinfoEmbed = new MessageEmbed()
             .setTitle("Some info about me:")
-            .setDescription(`Creator: ${strikethrough("Davoth")} ${doomBot.application.owner.username}
-            Started logging into discord at: 
-            ${time(Math.floor(readyAt), "F")} (${time(Math.floor(readyAt), "R")})
-            Servers I'm in: ${doomBot.guilds.cache.size}`)
+            .setDescription(`Creator: ${strikethrough("Davoth")} ${doomBot.application.owner.username}\n` + 
+            `Started logging into discord at:\n` +  
+            `${time(Math.floor(readyAt), "F")} (${time(Math.floor(readyAt), "R")})\n` +
+            `Servers I'm in: ${doomBot.guilds.cache.size}`)
             .setColor("#FF0000")
             .setThumbnail(doomBot.user.avatarURL())
         const row = new MessageActionRow()

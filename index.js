@@ -31,7 +31,7 @@ doomBot.on("interactionCreate", async (interaction) => {
         command = commands.get(interaction.commandName)
         if (command) {
             try {
-                command.execute(interaction)
+                await command.execute(interaction)
             } catch (error) {
                 const errorEmbed = new MessageEmbed()
                     .setTitle("An error occured!")
