@@ -6,6 +6,9 @@ module.exports = {
     execute: async (interaction) => {
         const doomBot = interaction.client
         const readyAt = Math.floor(doomBot.readyTimestamp / 1000)
+
+        await doomBot.application.fetch()
+
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
@@ -22,7 +25,9 @@ module.exports = {
             .addFields(
                 { name: "Creator:", value: `${strikethrough(inlineCode("Davoth"))} ${inlineCode(doomBot.application.owner.username)}`},
                 { name: "Started logging into Discord at:", value: `${time(readyAt, "F")} (${time(readyAt, "R")})`},
-                { name: "Servers I'm in:", value: `${inlineCode(doomBot.guilds.cache.size)}`}
+                { name: "Stats:", value: `Servers I'm in: ${doomBot.guilds.cache.size}\n` +
+                `Channels I'm currently handling: ${doomBot.channels.cache.size}` 
+                }
             )
         await interaction.reply({ embeds: [ botinfoEmbed ], components: [ row ] })
     }
