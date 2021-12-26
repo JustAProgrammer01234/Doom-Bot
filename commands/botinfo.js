@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, strikethrough, time } = require("@discordjs/builders")
+const { SlashCommandBuilder, strikethrough, inlineCode, time } = require("@discordjs/builders")
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 
 module.exports = {
@@ -6,14 +6,6 @@ module.exports = {
     execute: async (interaction) => {
         const doomBot = interaction.client
         const readyAt = Math.floor(doomBot.readyTimestamp / 1000)
-        const botinfoEmbed = new MessageEmbed()
-            .setTitle("Some info about me:")
-            .setDescription(`Creator: ${strikethrough("Davoth")} ${doomBot.application.owner.username}\n` + 
-            `Started logging into discord at:\n` +  
-            `${time(Math.floor(readyAt), "F")} (${time(Math.floor(readyAt), "R")})\n` +
-            `Servers I'm in: ${doomBot.guilds.cache.size}`)
-            .setColor("#FF0000")
-            .setThumbnail(doomBot.user.avatarURL())
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
@@ -22,6 +14,16 @@ module.exports = {
                     .setURL("https://github.com/JustAProgrammer01234/Doom-Bot")
                     .setEmoji("923803162148741130")
             )
-        await interaction.reply({ embeds: [botinfoEmbed], components: [row] })
+        const botinfoEmbed = new MessageEmbed()
+            .setTitle("Some info about me:")
+            .setColor("#FF0000")
+            .setThumbnail(doomBot.user.avatarURL())
+            .setDescription(doomBot.application.description)
+            .addFields(
+                { name: "Creator:", value: `${strikethrough(inlineCode("Davoth"))} ${inlineCode(doomBot.owner.username)}`},
+                { name: "Started logging into Discord at:", value: `${time(readyAt, "F")} (${time(readyAt, "R")})`},
+                { name: "Servers I'm in:", value: `${inlineCode(doomBot.guilds.cache.size)}`}
+            )
+        await interaction.reply({ embeds: [ botinfoEmbed ], components: [ row ] })
     }
 }
