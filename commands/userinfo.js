@@ -60,7 +60,9 @@ module.exports = {
             let activitiesDoing = ""
 
             if (activity instanceof Array) {
-                activity = activity.slice(1)
+                if (activity[0].type == "CUSTOM") {
+                    activity = activity.slice(1)
+                }
                 if (activity.length > 0) {
                     for (const act of activity) {
                         activitiesDoing += `${bold(act.type)}: ${inlineCode(act.name)}\n`
