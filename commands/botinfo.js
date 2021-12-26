@@ -20,7 +20,7 @@ module.exports = {
             .setThumbnail(doomBot.user.avatarURL())
             .setDescription(doomBot.application.description)
             .addFields(
-                { name: "Creator:", value: `${strikethrough(inlineCode("Davoth"))} ${inlineCode(doomBot.owner.username)}`},
+                { name: "Creator:", value: `${strikethrough(inlineCode("Davoth"))} ${inlineCode(doomBot.application.owner.username)}`},
                 { name: "Started logging into Discord at:", value: `${time(readyAt, "F")} (${time(readyAt, "R")})`},
                 { name: "Servers I'm in:", value: `${inlineCode(doomBot.guilds.cache.size)}`}
             )
