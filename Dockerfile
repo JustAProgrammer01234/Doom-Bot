@@ -4,7 +4,7 @@ WORKDIR /doom-bot
 COPY ./doombot /doom-bot 
 
 ENV TOKEN token
-ENV CLIENTID 913669721159774279
+ENV CLIENTID clientid
 
 RUN npm install discord.js 
 RUN npm install @discordjs/builders 
