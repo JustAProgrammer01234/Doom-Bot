@@ -34,7 +34,7 @@ module.exports = {
             })
         
         const infoEmbed = new MessageEmbed()
-            .setAuthor(`${user.username}#${user.discriminator} | ID: ${user.id}`, user.displayAvatarURL({ dynamic: true }))
+            .setAuthor({ name: `${user.username}#${user.discriminator} | ID: ${user.id}`, url: user.displayAvatarURL({ dynamic: true }) })
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
