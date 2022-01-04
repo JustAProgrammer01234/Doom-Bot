@@ -12,15 +12,11 @@ module.exports = {
                 description: `Contains ${i[0]} commands.`,
                 value: `${i[0]}`
             })
-        }
-        for (const j of assets.commandList) {
             fields.push({
-                name: `${j[0]}`,
-                description: inlineCode(`Contains ${j[0]} commands.`)
+                name: `${i[0]}`,
+                description: inlineCode(`Contains ${i[0]} commands.`)
             })
         }
-        console.log(fields)
-        console.log(options)
         const helpEmbed = new MessageEmbed()
             .setTitle("All help is down below")
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
