@@ -7,7 +7,7 @@ function navigateCommands(func) {
     for (const dir of cmdFiles) {
         const cmds = fs.readdirSync(`./commands/${dir}`)
         for (const cmdFile of cmds) {
-            func(cmdFile)
+            func(`${dir}/${cmdFile}`)
         }
     }
 }
