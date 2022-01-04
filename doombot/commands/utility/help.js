@@ -21,7 +21,7 @@ module.exports = {
                 }
             )
         }
-        const helpEmbed = MessageEmbed()
+        const helpEmbed = new MessageEmbed()
             .setTitle("All help is down below")
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
             .setColor("#FF0000")
