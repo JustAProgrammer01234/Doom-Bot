@@ -2,6 +2,6 @@ version: "3.9"
 
 services: 
   doom-bot:
-    build: "./doombot"
+    build: "."
     container_name: "doom-bot"
     restart: "always"
