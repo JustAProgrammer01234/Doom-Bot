@@ -26,7 +26,7 @@ module.exports = {
             .addComponents(
                 new MessageSelectMenu()
                     .setCustomId("help_select")
-                    .setPlaceHolder("Select a category.")
+                    .setPlaceholder("Select a category.")
                     .setOptions(options)
             )
         await interaction.reply({ embeds: [ helpEmbed ], components: [ helpSelectMenu ] })
