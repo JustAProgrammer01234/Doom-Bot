@@ -6,7 +6,7 @@ module.exports = {
     execute: async (interaction, assets) => {
         const fields = []
         const options = []
-        for (const i of asssets) {
+        for (const i of assets) {
             options.push({
                 label: `${i[0]}`,
                 description: `Contains ${i[0]} commands.`,
