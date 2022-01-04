@@ -14,7 +14,7 @@ module.exports = {
             })
             fields.push({
                 name: `${i[0]}`,
-                description: inlineCode(`Contains ${i[0]} commands.`)
+                value: inlineCode(`Contains ${i[0]} commands.`)
             })
         }
         const helpEmbed = new MessageEmbed()
