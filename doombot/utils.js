@@ -21,7 +21,7 @@ function listCommands() {
             const cmd = require(`./commands/${dir}/${cmdFile}`)
             commandList.push([cmd.data.name, cmd.data.description])
         }
-        commands.set(category, commandList)
+        commands.set(dir, commandList)
     }
     return commands 
 }
