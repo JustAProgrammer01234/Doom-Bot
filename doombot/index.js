@@ -17,8 +17,8 @@ const doomBot = new Client({
 })
 const assets = {commandList: listCommands()}
 
-navigateCommands((category, cmdFile) => {
-    const cmd = require(`./commands/${category}/${cmdFile}`)
+navigateCommands((cmdFile) => {
+    const cmd = require(`./commands/${cmdFile}`)
     const cmdName = cmd.name 
     console.log(`Loading command: ${cmdName}`)
     commands.set(cmdName, cmd)
