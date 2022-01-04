@@ -6,8 +6,8 @@ const cmdFiles = fs.readdirSync("./commands")
 function navigateCommands(func) {
     for (const dir of cmdFiles) {
         const cmds = fs.readdirSync(`./commands/${dir}`)
-        for (const cmdFile of cmds) {
-            func(`${dir}/${cmdFile}`)
+        for (const cmd of cmds) {
+            func(`${dir}/${cmd}`)
         }
     }
 }
@@ -18,7 +18,8 @@ function listCommands() {
     for (const dir of cmdFiles) {
         const cmds = fs.readdirSync(`./commands/${dir}`)
         for (const cmdFile of cmds) {
-            commandList.push([cmdFile.data.name, cmdFile.data.description])
+            const cmd = require(`${dir}/${cmdFile}`)
+            commandList.push([cmd.data.name, cmd.data.description])
         }
         commands.set(category, commandList)
     }
