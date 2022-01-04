@@ -1,17 +1,17 @@
-const fs = require("fs")
+const { navigateCommands } = require("./utils.js")
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
+
 const token = process.env.TOKEN
 const clientId = process.env.CLIENTID
 
 const commands = []
-const commandFiles = fs.readdirSync('./commands')
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`)
-	console.log(`Loading command: ${command.data.name}`)
-	commands.push(command.data.toJSON())
-}
+navigateCommands((category, cmdFile) => {
+    const cmd = require(`./commands/${category}/${cmdFile}`)
+    console.log(`Preparing command: ${cmd.name}`)
+    commands.push(cmd.toJSON())
+})
 
 const rest = new REST({ version: '9' }).setToken(token)
 

@@ -1,10 +1,12 @@
-const fs = require("fs")
 const {Client, Intents, Collection, MessageEmbed} = require("discord.js")
-const token = process.env.TOKEN
+const { navigateCommands, listCommands } = require("./utils.js")
 const commands = new Collection()
-const cmdFiles = fs.readdirSync("./commands")
+const token = process.env.TOKEN
 const doomBot = new Client({ 
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES], 
+    intents: [
+        Intents.FLAGS.GUILDS, 
+        Intents.FLAGS.GUILD_PRESENCES
+    ], 
     presence: {
         status: "dnd",
         activities: [{
@@ -13,13 +15,14 @@ const doomBot = new Client({
         }]
     } 
 })
+const assets = {commandList: listCommands()}
 
-for (const file of cmdFiles) {
-    const command = require(`./commands/${file}`)
-    const cmdName = command.data.name
-    console.log(`Preparing command: ${cmdName}`)
-    commands.set(cmdName, command)
-}
+navigateCommands((category, cmdFile) => {
+    const cmd = require(`./commands/${category}${cmdFile}`)
+    const cmdName = cmd.name 
+    console.log(`Loading command: ${cmdName}`)
+    commands.set(cmdName, cmd)
+})
 
 doomBot.once("ready", () => {
     console.log("Ready to RIP AND TEAR!")
@@ -30,7 +33,11 @@ doomBot.on("interactionCreate", async (interaction) => {
         command = commands.get(interaction.commandName)
         if (command) {
             try {
-                await command.execute(interaction)
+                if (command.execute.length < 1) {
+                    await command.execute(interaction)
+                } else {
+                    await command.execute(interaction, assets)
+                }
             } catch (error) {
                 const errorEmbed = new MessageEmbed()
                     .setTitle("An error occured!")
@@ -42,4 +49,4 @@ doomBot.on("interactionCreate", async (interaction) => {
     }
 })
 
-doomBot.login(token);
+doomBot.login(token)

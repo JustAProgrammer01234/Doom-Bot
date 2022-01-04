@@ -5,6 +5,6 @@ module.exports = {
         .addUserOption((option) => option.setName("user").setDescription("The user to get the profile from.").setRequired(true)),
     execute: async (interaction) => {
         const user = interaction.options.getUser("user")
-        await interaction.reply(user.displayAvatarURL())
+        await interaction.reply(user.displayAvatarURL({ dynamic: true }))
     }
 }

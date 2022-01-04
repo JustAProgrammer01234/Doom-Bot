@@ -1,10 +1,10 @@
 FROM node:latest
 
 WORKDIR /doom-bot 
-COPY . /doom-bot 
+COPY ./doombot /doom-bot 
 
 ENV TOKEN token
-ENV CLIENTID clientid
+ENV CLIENTID 913669721159774279
 
 RUN npm install discord.js 
 RUN npm install @discordjs/builders 

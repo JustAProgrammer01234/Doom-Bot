@@ -2,7 +2,7 @@ const { SlashCommandBuilder, inlineCode, bold, time } = require("@discordjs/buil
 const { MessageEmbed, GuildMember } = require('discord.js')
 
 module.exports = {
-    data: new SlashCommandBuilder().setName("userinfo").setDescription("Sends info about a user in discord.")
+    data: new SlashCommandBuilder().setName("whois").setDescription("Sends info about a user in discord.")
             .addUserOption((option) => option.setName("user").setDescription("The user to get info from.").setRequired(true)),
     execute: async (interaction) => {
         const botId = interaction.client.user.id
@@ -12,36 +12,29 @@ module.exports = {
 
         let embedTitle
         let isaBot
-        let isnotMe 
         let isaMember
         let memberObject
 
         if (isMe) {
-            embedTitle = `About ${user.username}: (Hey that's me!)`
-            isaBot = inlineCode("If your dumbass mind thinks I'm not a bot then consider going to a mental hospital.")
-            isaMember = inlineCode("That should be self explanatory.")
+            return await interaction.reply("Use the `/whoareyou` command if you want to know shit about me smh.")
+        }
+
+        embedTitle = `About ${user.username}:`
+        if (user.bot) {
+            isaBot = inlineCode("Yup, just like me.")
         } else {
-            isnotMe = true 
+            isaBot = inlineCode("Nah.")
         }
-
-        if (isnotMe) {
-            embedTitle = `About ${user.username}:`
-            if (user.bot) {
-                isaBot = inlineCode("Yup, just like me.")
-            } else {
-                isaBot = inlineCode("Nah.")
-            }
-            [isaMember, memberObject] = await interaction.guild.members.fetch(user.id)
-                .then((data) => {
-                    return ["`Yes. (They could be stalking you, better watch out.)`", data]
-                })
-                .catch(() => {
-                    return ["`Nah.`", null]
-                })
-        }
-
+        [isaMember, memberObject] = await interaction.guild.members.fetch(user.id)
+            .then((data) => {
+                return ["`Yes. (They could be stalking you, better watch out.)`", data]
+            })
+            .catch(() => {
+                return ["`Nah.`", null]
+            })
+        
         const infoEmbed = new MessageEmbed()
-            .setAuthor(`${user.username}#${user.discriminator} | ID: ${user.id}`, user.displayAvatarURL())
+            .setAuthor(`${user.username}#${user.discriminator} | ID: ${user.id}`, user.displayAvatarURL({ dynamic: true }))
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
@@ -64,9 +57,9 @@ module.exports = {
                     activity = activity.slice(1)
                 }
                 if (activity.length > 0) {
-                    for (const act of activity) {
-                        activitiesDoing += `${bold(act.type)}: ${inlineCode(act.name)}\n`
-                    }
+                    activity.forEach((act) => {
+                        activitiesDoing += `${bold(act.type)}: ${inlineCode(act.name)}\n`  
+                    })
                 } else {
                     activitiesDoing += inlineCode("They aren't doing anything yet LMAO.")
                 }
