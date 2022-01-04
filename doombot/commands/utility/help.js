@@ -6,14 +6,14 @@ module.exports = {
     execute: async (interaction, assets) => {
         const fields = []
         const options = []
-        for (const i of assets) {
+        for (const i of assets.commandList) {
             options.push({
                 label: `${i[0]}`,
                 description: `Contains ${i[0]} commands.`,
                 value: `${i[0]}`
             })
         }
-        for (const j of assets) {
+        for (const j of assets.commandList) {
             fields.push(
                 {
                     name: `${j[0]}`,
