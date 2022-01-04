@@ -19,7 +19,7 @@ const assets = {commandList: listCommands()}
 
 navigateCommands((cmdFile) => {
     const cmd = require(`./commands/${cmdFile}`)
-    const cmdName = cmd.name 
+    const cmdName = cmd.data.name 
     console.log(`Loading command: ${cmdName}`)
     commands.set(cmdName, cmd)
 })
