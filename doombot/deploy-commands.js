@@ -10,7 +10,7 @@ const commands = []
 navigateCommands((cmdFile) => {
     const cmd = require(`./commands/${cmdFile}`)
     console.log(`Preparing command: ${cmd.data.name}`)
-    commands.push(cmd.data.applicationCommandstoJSON())
+    commands.push(cmd.data.toJSON())
 })
 
 const rest = new REST({ version: '9' }).setToken(token)
