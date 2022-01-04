@@ -21,13 +21,13 @@ module.exports = {
             .setTitle("All help is down below")
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
             .setColor("#FF0000")
-            .addFields(...fields)
+            .addFields(fields)
         const helpSelectMenu = new MessageActionRow()
             .addComponents(
                 new MessageSelectMenu()
                     .setCustomId("help_select")
                     .setPlaceHolder("Select a category.")
-                    .setOptions(...options)
+                    .setOptions(options)
             )
         await interaction.reply({ embeds: [ helpEmbed ], components: [ helpSelectMenu ] })
     }
