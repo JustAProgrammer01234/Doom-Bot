@@ -7,8 +7,8 @@ const clientId = process.env.CLIENTID
 
 const commands = []
 
-navigateCommands((category, cmdFile) => {
-    const cmd = require(`./commands/${category}/${cmdFile}`)
+navigateCommands((cmdFile) => {
+    const cmd = require(`./commands/${cmdFile}`)
     console.log(`Preparing command: ${cmd.data.name}`)
     commands.push(cmd.data.applicationCommandstoJSON())
 })
