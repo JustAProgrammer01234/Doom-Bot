@@ -18,7 +18,7 @@ function listCommands() {
     for (const dir of cmdFiles) {
         const cmds = fs.readdirSync(`./commands/${dir}`)
         for (const cmdFile of cmds) {
-            const cmd = require(`${dir}/${cmdFile}`)
+            const cmd = require(`./commands/${dir}/${cmdFile}`)
             commandList.push([cmd.data.name, cmd.data.description])
         }
         commands.set(category, commandList)
