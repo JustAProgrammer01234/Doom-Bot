@@ -1,4 +1,4 @@
-const { fs } = require("fs")
+const fs = require("fs")
 const { Collection } = require("discord.js")
 
 const cmdFiles = fs.readdirSync("./commands")
