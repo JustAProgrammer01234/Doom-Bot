@@ -2,7 +2,7 @@ const { SlashCommandBuilder, time } = require("@discordjs/builders")
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
-    data: SlashCommandBuilder().setName("aboutserver").setDescription("Sends info about this server."),
+    data: new SlashCommandBuilder().setName("aboutserver").setDescription("Sends info about this server."),
     execute: async (interaction) => {
         const guild = interaction.guild
         const guildCreatedTimestamp = Math.floor(guild.createdTimestamp / 1000)
