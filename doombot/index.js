@@ -43,7 +43,7 @@ doomBot.on("interactionCreate", async (interaction) => {
                     .setTitle("An error occured!")
                     .setColor("#FF0000")
                     .setDescription(`${error}`)
-                await interaction.deferReply({ embeds: [ errorEmbed ], ephemeral: true })
+                await interaction.reply({ embeds: [ errorEmbed ], ephemeral: true })
             } 
         }
     }
