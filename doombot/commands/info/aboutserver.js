@@ -5,10 +5,11 @@ module.exports = {
     data: new SlashCommandBuilder().setName("aboutserver").setDescription("Sends info about this server."),
     execute: async (interaction) => {
         const guild = interaction.guild
+        const guildDescription = guild.description ? "No badass description provided" : guild.description
         const guildCreatedTimestamp = Math.floor(guild.createdTimestamp / 1000)
         const guildInfoEmbed = new MessageEmbed()
             .setTitle(`Stuff about ${guild.name}`)
-            .setDescription(guild.description)
+            .setDescription(guildDescription)
             .setThumbnail(guild.iconURL({ dynamic: true }))
             .setColor("#FF0000")
             .addFields(

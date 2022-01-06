@@ -34,7 +34,7 @@ module.exports = {
             })
         
         const infoEmbed = new MessageEmbed()
-            .setAuthor({ name: `${user.username}#${user.discriminator} | ID: ${user.id}`, url: user.displayAvatarURL({ dynamic: true }) })
+            .setAuthor({ name: `${user.username}#${user.discriminator} | ID: ${user.id}`, iconURL: user.displayAvatarURL({ dynamic: true }) })
             .setTitle(`${embedTitle}`)
             .setColor("#FF0000")
             .setThumbnail(user.displayAvatarURL())
@@ -73,9 +73,9 @@ module.exports = {
                 { name: "Activities doing:", value: activitiesDoing}
             )
         } else if (isMe) {
-            infoEmbed.setFooter("For more info about me try using the /botinfo command.")
+            infoEmbed.setFooter({ text: "For more info about me try using the /botinfo command." })
         } else {
-            infoEmbed.setFooter("Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)")
+            infoEmbed.setFooter({ text: "Unfortunately I cannot get more info from this user since they ain't a member of this server. (Blame discord for this bullshit!)" })
         }
         await interaction.reply({ embeds: [ infoEmbed ] })
     }
