@@ -22,13 +22,20 @@ module.exports = {
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
             .setColor("#FF0000")
             .addFields(fields)
-        const helpSelectMenu = new MessageActionRow()
-            .addComponents(
-                new MessageSelectMenu()
-                    .setCustomId("help_select")
-                    .setPlaceholder("Select a category.")
-                    .setOptions(options)
-            )
-        await interaction.reply({ embeds: [ helpEmbed ], components: [ helpSelectMenu ] })
+        const helpSelectMenu = new MessageSelectMenu()
+            .setCustomId("help_select")
+            .setPlaceholder("Select a category.")
+            .setOptions(options)
+        const actionRow = new MessageActionRow().addComponents(helpSelectMenu)
+        const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ] })
+        const filter = (i) => {return interaction.user.id === i.user.id}
+        const menuCollector = message.createMessageComponentSelector({ filter, componentType: "SELECT_MENU", time: 10000 })
+
+        menuCollector.on("collect", async (i) => {
+            await i.editReply("yes")
+        })
+        menuCollector.on("end", () => {
+            helpSelectMenu.setDisabled(true)
+        })
     }
 }
