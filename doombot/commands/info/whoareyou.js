@@ -9,7 +9,7 @@ module.exports = {
 
         await doomBot.application.fetch()
 
-        const createdAt = Math.floor(doomBot.application.user.createdTimestamp / 1000)
+        const createdAt = Math.floor(doomBot.user.createdTimestamp / 1000)
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
