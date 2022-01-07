@@ -1,8 +1,8 @@
-const { navigateCommands } = require("./utils.js")
+const { navigateCommands, getToken } = require("./utils.js")
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
 
-const token = process.env.TOKEN
+const token = getToken()
 const clientId = process.env.CLIENTID
 
 const commands = []

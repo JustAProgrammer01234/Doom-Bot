@@ -1,7 +1,7 @@
 const {Client, Intents, Collection, MessageEmbed} = require("discord.js")
-const { navigateCommands, listCommands } = require("./utils.js")
+const { navigateCommands, listCommands, getToken } = require("./utils.js")
 const commands = new Collection()
-const token = process.env.TOKEN
+const token = getToken()
 const doomBot = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS, 

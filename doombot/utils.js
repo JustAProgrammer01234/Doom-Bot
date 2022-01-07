@@ -26,7 +26,19 @@ function listCommands() {
     return commands 
 }
 
+function getToken() {
+    let token
+    fs.readFile(process.env.TOKEN, "utf-8", (err, data) => {
+        if (err) {
+            return console.error(err)
+        }
+        token = data
+    })
+    return token
+}
+
 module.exports  = {
     navigateCommands,
-    listCommands
+    listCommands,
+    getToken
 }
