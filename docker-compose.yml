@@ -5,3 +5,9 @@ services:
     build: "."
     container_name: "doom-bot"
     restart: "always"
+    environment:
+      - TOKEN: "/run/secrets/token"
+
+secrets: 
+  token:
+    file: "./credentials/token.txt"

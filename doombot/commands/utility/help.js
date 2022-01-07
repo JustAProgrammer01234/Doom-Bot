@@ -32,7 +32,9 @@ module.exports = {
         const menuCollector = message.createMessageComponentSelector({ filter, componentType: "SELECT_MENU", time: 10000 })
 
         menuCollector.on("collect", async (i) => {
-            await i.editReply("yes")
+            if (i.componentType == "SELECT_MENU") {
+                await i.update({ content: "yes" })
+            }
         })
         menuCollector.on("end", () => {
             helpSelectMenu.setDisabled(true)

@@ -3,7 +3,6 @@ FROM node:latest
 WORKDIR /doom-bot 
 COPY ./doombot /doom-bot 
 
-ENV TOKEN token
 ENV CLIENTID clientid
 
 RUN npm install discord.js 
