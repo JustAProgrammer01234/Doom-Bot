@@ -1,8 +1,8 @@
 const {Client, Intents, Collection, MessageEmbed} = require("discord.js")
 const { navigateCommands, listCommands } = require("./utils.js")
-const { secrets } = require("docker-secret")
+const { getSecret } = require("docker-secret")
 const commands = new Collection()
-const token = secrets.token
+const token = getSecret("token")
 const doomBot = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS, 
