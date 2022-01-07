@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "docker-secret": "^1.2.4"
+  }
+}

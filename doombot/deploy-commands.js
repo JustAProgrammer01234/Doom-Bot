@@ -1,8 +1,9 @@
-const { navigateCommands, getToken } = require("./utils.js")
+const { navigateCommands } = require("./utils.js")
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
+const { secrets } = require("docker-secret")
 
-const token = getToken()
+const token = secrets.token
 const clientId = process.env.CLIENTID
 
 const commands = []

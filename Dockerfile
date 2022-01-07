@@ -9,6 +9,7 @@ RUN npm install discord.js
 RUN npm install @discordjs/builders 
 RUN npm install @discordjs/rest
 RUN npm install discord-api-types
+RUN npm install docker-secret
 RUN node deploy-commands.js 
 
 USER node 
