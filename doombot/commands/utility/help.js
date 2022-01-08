@@ -32,7 +32,7 @@ module.exports = {
             i.deferUpdate()
             return interaction.user.id === i.user.id
         }
-        const menuCollector = await message.createMessageComponentSelector({ filter, componentType: "SELECT_MENU", time: 10000 })
+        const menuCollector = await message.awaitMessageComponent({ filter, componentType: "SELECT_MENU", time: 10000 })
 
         await menuCollector.editReply("Hey Scripto, better finish this help command.")
     }
