@@ -27,7 +27,7 @@ module.exports = {
             .setPlaceholder("Select a category.")
             .setOptions(options)
         const actionRow = new MessageActionRow().addComponents(helpSelectMenu)
-        const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ] })
+        const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ], fetchReply: true })
         const filter = (i) => {
             i.deferUpdate()
             return interaction.user.id === i.user.id
