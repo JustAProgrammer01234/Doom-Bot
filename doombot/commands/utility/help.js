@@ -28,12 +28,12 @@ module.exports = {
             .setOptions(options)
         const actionRow = new MessageActionRow().addComponents(helpSelectMenu)
         const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ] })
-        const filter = (i) => {return interaction.user.id === i.user.id}
+        const filter = (i) => {i.deferUpdate(); return interaction.user.id === i.user.id}
         const menuCollector = message.createMessageComponentSelector({ filter, componentType: "SELECT_MENU", time: 10000 })
 
         menuCollector.on("collect", async (i) => {
             if (i.componentType == "SELECT_MENU") {
-                await i.update({ content: "yes" })
+                await i.editReply("yes")
             }
         })
         menuCollector.on("end", () => {
