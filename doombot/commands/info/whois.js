@@ -25,7 +25,7 @@ module.exports = {
         } else {
             isaBot = inlineCode("Nah.")
         }
-        [isaMember, memberObject] = await interaction.guild.members.fetch(user.id)
+        [isaMember, memberObject] = interaction.guild.members.fetch(user.id)
             .then((data) => {
                 return ["`Yes. (They could be stalking you, better watch out.)`", data]
             })
