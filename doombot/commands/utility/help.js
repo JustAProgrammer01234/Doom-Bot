@@ -35,6 +35,8 @@ module.exports = {
         const menuCollector = await message.awaitMessageComponent({ filter, componentType: "SELECT_MENU", time: 10000 })
         const helpEditedEmbed = new MessageEmbed()
             .setTitle("A message!")
+            .setColor("#FF0000")
+            .setThumbnail("https://i.imgflip.com/5lxovb.png")
             .setDescription("Hey Scripto, better finish this help command.")
             .addField("Values chosen:", menuCollector.values.toString())
     
