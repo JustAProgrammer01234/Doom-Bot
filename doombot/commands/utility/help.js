@@ -36,7 +36,7 @@ module.exports = {
         const helpEditedEmbed = new MessageEmbed()
             .setTitle("A message!")
             .setDescription("Hey Scripto, better finish this help command.")
-            .addField("Values chosen:", (!menuCollector.values) ? "No values chosen." : menuCollector.values)
+            .addField("Values chosen:", menuCollector.values.toString())
     
         await menuCollector.editReply({ embeds: [ helpEditedEmbed ]})
     }
