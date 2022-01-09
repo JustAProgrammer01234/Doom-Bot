@@ -30,6 +30,8 @@ module.exports = {
         const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ], fetchReply: true })
         const filter = async (i) => {
             await i.deferUpdate()
+            console.log(interaction.user.id)
+            console.log(i.user.id)
             return interaction.user.id === i.user.id
         }
         const menuCollector = await message.awaitMessageComponent({ filter, componentType: "SELECT_MENU", time: 10000 })
