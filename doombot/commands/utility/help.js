@@ -33,7 +33,11 @@ module.exports = {
             return interaction.user.id === i.user.id
         }
         const menuCollector = await message.awaitMessageComponent({ filter, componentType: "SELECT_MENU", time: 10000 })
-
-        await menuCollector.editReply("Hey Scripto, better finish this help command.")
+        const helpEditedEmbed = new MessageEmbed()
+            .setTitle("A message!")
+            .setDescription("Hey Scripto, better finish this help command.")
+            .addField({ name: "Values chosen:", value: menuCollecdtor.values })
+    
+        await menuCollector.editReply({ embeds: [ helpEditedEmbed ]})
     }
 }
