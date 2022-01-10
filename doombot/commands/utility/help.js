@@ -33,11 +33,9 @@ module.exports = {
             .setCustomId("help_select")     
             .setPlaceholder("Select a category.")
             .setOptions(options)
-        const actionRow = new MessageActionRow().addComponents(
-            helpSelectMenu,
-            exitButton
-        )
-        const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ], fetchReply: true })
+        const menu = new MessageActionRow().addComponents(helpSelectMenu)
+        const button = new MessageActionRow().addComponents(exitButton)
+        const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ menu, button ], fetchReply: true })
         const menuCollector = message.createMessageComponentCollector({ componentType: "SELECT_MENU" })
         const buttonCollector = message.createMessageComponentCollector({ componentType: "BUTTON" })
 
@@ -60,10 +58,8 @@ module.exports = {
         buttonCollector.on("collect", async (i) => {
             await i.deferUpdate()
             await i.editReply({ components: [
-                new MessageActionRow().addComponents(
-                    helpSelectMenu.setDisabled(true),
-                    exitButton.setDisabled(true)
-                )
+                new MessageActionRow().addComponents(helpSelectMenu.setDisabled(true)),
+                new MessageActionRow().addComponents(exitButton.setDisabled(true))
             ]})
         })
     }
