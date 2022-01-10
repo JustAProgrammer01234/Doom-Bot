@@ -6,8 +6,9 @@ module.exports = {
     execute: async (interaction, assets) => {
         const fields = []
         const options = []
+        const commandList = assets.commandList
 
-        for (const i of assets.commandList) {
+        for (const i of commandList) {
             const category = i[0]
             options.push({
                 label: `${category[0].toUpperCase() + category.slice(1)}`,
@@ -43,7 +44,7 @@ module.exports = {
             if (i.user.id === interaction.user.id) {
                 const commands = ""
                 const chosenCategory = i.values.toString()
-                for (const cmd of assets.get(chosenCategory)) {
+                for (const cmd of commandList.get(chosenCategory)) {
                     commands += `${inlinecode(`/${cmd[0]}`)} ${bold("->")} ${cmd[1]}\n`
                 }
                 const helpEditedEmbed = new MessageEmbed()
