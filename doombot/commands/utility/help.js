@@ -41,9 +41,9 @@ module.exports = {
 
         menuCollector.on("collect", async (i) => {
             if (i.user.id === interaction.user.id) {
-                commands = ""
-                chosenCategory = i.values.toString()
-                for (cmd of assets.get(chosenCategory)) {
+                const commands = ""
+                const chosenCategory = i.values.toString()
+                for (const cmd of assets.get(chosenCategory)) {
                     commands += `${inlinecode(`/${cmd[0]}`)} ${bold("->")} ${cmd[1]}\n`
                 }
                 const helpEditedEmbed = new MessageEmbed()

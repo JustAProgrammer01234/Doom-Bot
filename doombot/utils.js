@@ -13,9 +13,9 @@ function navigateCommands(func) {
 }
 
 function listCommands() {
-    const commands = new Collection()
-    const commandList = [] 
+    const commands = new Collection() 
     for (const dir of cmdFiles) {
+        const commandList = []
         const cmds = fs.readdirSync(`./commands/${dir}`)
         for (const cmdFile of cmds) {
             const cmd = require(`./commands/${dir}/${cmdFile}`)
