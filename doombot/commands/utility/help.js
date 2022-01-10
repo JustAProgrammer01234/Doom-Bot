@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, inlineCode} = require("@discordjs/builders")
+const { SlashCommandBuilder, inlineCode, bold} = require("@discordjs/builders")
 const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton } = require("discord.js")
 
 module.exports = {
@@ -41,12 +41,16 @@ module.exports = {
 
         menuCollector.on("collect", async (i) => {
             if (i.user.id === interaction.user.id) {
+                commands = ""
+                chosenCategory = i.values.toString()
+                for (cmd of assets.get(chosenCategory)) {
+                    commands += `${inlinecode(`/${cmd[0]}`)} ${bold("->")} ${cmd[1]}\n`
+                }
                 const helpEditedEmbed = new MessageEmbed()
-                    .setTitle("A message!")
+                    .setTitle(`${chosenCategory[0].toUpperCase() + chosenCategory.slice(1)} category`)
                     .setColor("#FF0000")
                     .setThumbnail("https://i.imgflip.com/5lxovb.png")
-                    .setDescription("Hey Scripto, better finish this help command.")
-                    .addField("Values Chosen:", i.values.toString()) 
+                    .addField("Commands:", commands) 
                     
                 await i.deferUpdate()
                 await i.editReply({ embeds: [ helpEditedEmbed ] })  
