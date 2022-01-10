@@ -40,7 +40,7 @@ module.exports = {
                     .setColor("#FF0000")
                     .setThumbnail("https://i.imgflip.com/5lxovb.png")
                     .setDescription("Hey Scripto, better finish this help command.")
-                    .addField("Values chosen:", menuCollector.values.toString())    
+                    .addField("key", "value")    
                 await i.editReply({ embeds: [ helpEditedEmbed ] })  
             } else {
                 await i.reply({ content: "This isn't for you lmao." })
@@ -50,7 +50,5 @@ module.exports = {
         menuCollector.on("end", () => {
             helpSelectMenu.setDisabled(true)
         })
-    
-        await menuCollector.editReply({ embeds: [ helpEditedEmbed ]})
     }
 }
