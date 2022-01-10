@@ -31,8 +31,7 @@ module.exports = {
             .setOptions(options)
         const actionRow = new MessageActionRow().addComponents(helpSelectMenu)
         const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ], fetchReply: true })
-        const filter = async (i) => { await i.deferUpdate() }
-        const menuCollector = message.createMessageComponentCollector({ filter, componentType: "SELECT_MENU", time: 10000 })
+        const menuCollector = message.createMessageComponentCollector({ componentType: "SELECT_MENU", time: 10000 })
 
         menuCollector.on("collect", async (i) => {
             if (i.user.id === interaction.user.id) {
@@ -41,7 +40,9 @@ module.exports = {
                     .setColor("#FF0000")
                     .setThumbnail("https://i.imgflip.com/5lxovb.png")
                     .setDescription("Hey Scripto, better finish this help command.")
-                    .addField("Values Chosen:", i.values.toString())    
+                    .addField("Values Chosen:", i.values.toString()) 
+                    
+                await i.deferUpdate()
                 await i.editReply({ embeds: [ helpEditedEmbed ] })  
             } else {
                 await i.reply({ content: "This isn't for you lmao.", ephemeral: true })
