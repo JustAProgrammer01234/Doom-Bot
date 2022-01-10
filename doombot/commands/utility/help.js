@@ -42,7 +42,7 @@ module.exports = {
 
         menuCollector.on("collect", async (i) => {
             if (i.user.id === interaction.user.id) {
-                const commands = ""
+                let commands = ""
                 const chosenCategory = i.values.toString()
                 for (const cmd of commandList.get(chosenCategory)) {
                     commands += `${inlineCode(`/${cmd[0]}`)} ${bold("->")} ${cmd[1]}\n`
