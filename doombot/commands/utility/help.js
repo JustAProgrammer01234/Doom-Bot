@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, inlineCode} = require("@discordjs/builders")
-const { MessageEmbed, MessageActionRow, MessageSelectMenu } = require("discord.js")
+const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder().setName("help").setDescription("Sends all the commands and stuff about Doom Bot FYI."),
@@ -25,13 +25,21 @@ module.exports = {
             .setThumbnail("https://i.imgflip.com/5lxovb.png")
             .setColor("#FF0000")
             .addFields(fields)
+        const exitButton = new MessageButton()
+            .setCustomId("exit")
+            .setLabel("Exit")
+            .setStyle("DANGER")
         const helpSelectMenu = new MessageSelectMenu()
             .setCustomId("help_select")     
             .setPlaceholder("Select a category.")
             .setOptions(options)
-        const actionRow = new MessageActionRow().addComponents(helpSelectMenu)
+        const actionRow = new MessageActionRow().addComponents(
+            helpSelectMenu,
+            exitButton
+        )
         const message = await interaction.reply({ embeds: [ helpEmbed ], components: [ actionRow ], fetchReply: true })
-        const menuCollector = message.createMessageComponentCollector({ componentType: "SELECT_MENU", time: 10000 })
+        const menuCollector = message.createMessageComponentCollector({ componentType: "SELECT_MENU" })
+        const buttonCollector = message.createMessageComponentCollector({ componentType: "BUTTON" })
 
         menuCollector.on("collect", async (i) => {
             if (i.user.id === interaction.user.id) {
@@ -47,6 +55,16 @@ module.exports = {
             } else {
                 await i.reply({ content: "This isn't for you lmao.", ephemeral: true })
             }
+        })
+    
+        buttonCollector.on("collect", async (i) => {
+            await i.deferUpdate()
+            await i.editReply({ components: [
+                new MessageActionRow().addComponents(
+                    helpSelectMenu.setDisabled(true),
+                    exitButton.setDisabled(true)
+                )
+            ]})
         })
     }
 }
