@@ -9,13 +9,13 @@ module.exports = {
 
         for (const i of assets.commandList) {
             options.push({
-                label: `${i[0]}`,
-                description: `Contains ${i[0].toLowerCase()} commands.`,
-                value: `${i[0].toLowerCase()}`
+                label: `${i[0].toUppercCase() + i.slice(1)}`,
+                description: `Contains ${i[0]} commands.`,
+                value: `${i[0]}`
             })
             fields.push({
-                name: `${i[0]}`,
-                value: inlineCode(`Contains ${i[0].toLowerCase()} commands.`)
+                name: `${i[0].toUppercCase() + i.slice(1)}`,
+                value: inlineCode(`Contains ${i[0]} commands.`)
             })
         }
         
