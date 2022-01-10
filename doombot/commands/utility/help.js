@@ -8,14 +8,15 @@ module.exports = {
         const options = []
 
         for (const i of assets.commandList) {
+            const category = i[0]
             options.push({
-                label: `${i[0].toUpperCase() + i.slice(1)}`,
-                description: `Contains ${i[0]} commands.`,
-                value: `${i[0]}`
+                label: `${category[0].toUpperCase() + category.slice(1)}`,
+                description: `Contains ${category} commands.`,
+                value: `${category}`
             })
             fields.push({
-                name: `${i[0].toUpperCase() + i.slice(1)}`,
-                value: inlineCode(`Contains ${i[0]} commands.`)
+                name: `${category[0].toUpperCase() + category.slice(1)}`,
+                value: inlineCode(`Contains ${category} commands.`)
             })
         }
         
