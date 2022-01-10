@@ -45,7 +45,7 @@ module.exports = {
                 const commands = ""
                 const chosenCategory = i.values.toString()
                 for (const cmd of commandList.get(chosenCategory)) {
-                    commands += `${inlinecode(`/${cmd[0]}`)} ${bold("->")} ${cmd[1]}\n`
+                    commands += `${inlineCode(`/${cmd[0]}`)} ${bold("->")} ${cmd[1]}\n`
                 }
                 const helpEditedEmbed = new MessageEmbed()
                     .setTitle(`${chosenCategory[0].toUpperCase() + chosenCategory.slice(1)} category`)
