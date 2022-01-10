@@ -10,12 +10,12 @@ module.exports = {
         for (const i of assets.commandList) {
             options.push({
                 label: `${i[0]}`,
-                description: `Contains ${i[0]} commands.`,
-                value: `${i[0]}`
+                description: `Contains ${i[0].toLowerCase()} commands.`,
+                value: `${i[0].toLowerCase()}`
             })
             fields.push({
                 name: `${i[0]}`,
-                value: inlineCode(`Contains ${i[0]} commands.`)
+                value: inlineCode(`Contains ${i[0].toLowerCase()} commands.`)
             })
         }
         
@@ -25,7 +25,7 @@ module.exports = {
             .setColor("#FF0000")
             .addFields(fields)
         const helpSelectMenu = new MessageSelectMenu()
-            .setCustomId("help_select")
+            .setCustomId("help_select")     
             .setPlaceholder("Select a category.")
             .setOptions(options)
         const actionRow = new MessageActionRow().addComponents(helpSelectMenu)
@@ -40,15 +40,11 @@ module.exports = {
                     .setColor("#FF0000")
                     .setThumbnail("https://i.imgflip.com/5lxovb.png")
                     .setDescription("Hey Scripto, better finish this help command.")
-                    .addField("key", "value")    
+                    .addField("Values Chosen:", i.values.toString())    
                 await i.editReply({ embeds: [ helpEditedEmbed ] })  
             } else {
-                await i.reply({ content: "This isn't for you lmao." })
+                await i.reply({ content: "This isn't for you lmao.", ephemeral: true })
             }
-        })
-
-        menuCollector.on("end", () => {
-            helpSelectMenu.setDisabled(true)
         })
     }
 }

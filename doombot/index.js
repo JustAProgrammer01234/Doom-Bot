@@ -4,7 +4,7 @@ const { getSecret } = require("docker-secret")
 const commands = new Collection()
 const token = getSecret("token")
 const doomBot = new Client({ 
-    intents: [
+    intents: [   
         Intents.FLAGS.GUILDS, 
         Intents.FLAGS.GUILD_PRESENCES
     ], 
@@ -47,11 +47,15 @@ doomBot.on("interactionCreate", async (interaction) => {
                 if (!interaction.replied) {
                     await interaction.reply({ embeds: [ errorEmbed ] })
                 } else {
-                    await interaction.channel.send({ embeds: [ errorEmbed ]})
+                    await interaction.channel.send({ embeds: [ errorEmbed ] })
                 }
             } 
         }
     }
+})
+
+doomBot.on("error", async (error) => {
+    console.error(error)
 })
 
 doomBot.login(token)
