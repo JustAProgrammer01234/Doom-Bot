@@ -5,8 +5,9 @@ services:
     image: "fredboat/lavalink:master"
     container_name: "lavalink-doom"
     restart: "always"
+    network_mode: host 
     ports:
-      - "2333:2333"
+      - "127.0.0.1:2333:2333"
     volumes: 
       - "./lavalink-config/application.yml:/opt/Lavalink/application.yml"
   doom-bot:
