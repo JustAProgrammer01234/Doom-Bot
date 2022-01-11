@@ -1,8 +1,11 @@
 const {Client, Intents, Collection, MessageEmbed} = require("discord.js")
+const { REST } = require("@discordjs/rest")
+const { Routes } = require("discord-api-types/v9")
 const { navigateCommands, listCommands } = require("./utils.js")
 const { getSecret } = require("docker-secret")
 const commands = new Collection()
 const token = getSecret("token")
+const clientId = process.env.CLIENTID
 const doomBot = new Client({ 
     intents: [   
         Intents.FLAGS.GUILDS, 
@@ -17,6 +20,19 @@ const doomBot = new Client({
     } 
 })
 const assets = {commandList: listCommands()}
+
+async function deployCommands() {
+    const commands = []
+    const rest = new REST({ version: "9" }).setToken(token)
+
+    navigateCommands((cmdFile) => {
+        const cmd = require(`./commands/${cmdFile}`)
+        console.log(`Preparing command: ${cmd.data.name}`)
+        commands.push(cmd.data.toJSON())
+    })
+    
+    await rest.put(Routes.applicationCommands(clientId), { body: commands })
+}
 
 navigateCommands((cmdFile) => {
     const cmd = require(`./commands/${cmdFile}`)
@@ -44,10 +60,11 @@ doomBot.on("interactionCreate", async (interaction) => {
                     .setTitle("An error occured!")
                     .setColor("#FF0000")
                     .setDescription(`${error}`)
+                const sendOptions = { embeds: [ errorEmbed ] }
                 if (!interaction.replied) {
-                    await interaction.reply({ embeds: [ errorEmbed ] })
+                    await interaction.reply(sendOptions)
                 } else {
-                    await interaction.channel.send({ embeds: [ errorEmbed ] })
+                    await interaction.channel.send(sendOptions)
                 }
             } 
         }
@@ -58,4 +75,7 @@ doomBot.on("error", async (error) => {
     console.error(error)
 })
 
+deployCommands()
+    .then(() => { console.log("Successfully registerd them fucking commands.") })
+    .catch(console.error)
 doomBot.login(token)

@@ -7,6 +7,14 @@ services:
     restart: "always"
     secrets:
       - token
+  lavalink-doom:
+    image: "fredboat/lavalink"
+    container_name: "lavalink-doom"
+    restart: "always"
+    ports:
+      - "2333:2333"
+    volumes: 
+      - "./lavalink-config/:/opt/Lavalink/"
 
 secrets: 
   token:
