@@ -1,12 +1,6 @@
 version: "3.9"
 
 services: 
-  doom-bot:
-    build: "."
-    container_name: "doom-bot"
-    restart: "always"
-    secrets:
-      - token
   lavalink-doom:
     image: "fredboat/lavalink:master"
     container_name: "lavalink-doom"
@@ -15,6 +9,14 @@ services:
       - "2333:2333"
     volumes: 
       - "./lavalink-config/:/opt/Lavalink/"
+  doom-bot:
+    build: "."
+    container_name: "doom-bot"
+    restart: "always"
+    secrets:
+      - token
+    depends_on:
+      - lavalink-doom 
 
 secrets: 
   token:
