@@ -1,8 +1,10 @@
-const {Client, Intents, Collection, MessageEmbed} = require("discord.js")
+const {Client, Intents, Collection } = require("discord.js")
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
 const { navigateCommands, listCommands } = require("./utils.js")
 const { getSecret } = require("docker-secret")
+const { Manager } = require("erela.js")
+const fs = require("fs")
 const commands = new Collection()
 const token = getSecret("token")
 const clientId = process.env.CLIENTID
@@ -19,7 +21,27 @@ const doomBot = new Client({
         }]
     } 
 })
-const assets = {commandList: listCommands()}
+const nodes = [
+    {
+        host: "localhost",
+        password: getSecret("lavalink-passwd"),
+        port: 2333
+    }
+]
+const lavalinkClient = new Manager({
+    nodes,
+    send: (id, payload) => {
+        const guild = client.guilds.get(id)
+        if (guild) {
+            guild.shard.send(payload)
+        }
+    }
+})
+const assets = {
+    commandList: listCommands(),
+    music: lavalinkClient
+}
+const eventFiles = fs.readdirSync("./events")
 
 async function deployCommands() {
     const commands = []
@@ -41,39 +63,19 @@ navigateCommands((cmdFile) => {
     commands.set(cmdName, cmd)
 })
 
-doomBot.once("ready", () => {
-    console.log("Ready to RIP AND TEAR!")
-})
-
-doomBot.on("interactionCreate", async (interaction) => {
-    if (interaction.isCommand()) {
-        command = commands.get(interaction.commandName)
-        if (command) {
-            try {
-                if (command.execute.length < 1) {
-                    await command.execute(interaction)
-                } else {
-                    await command.execute(interaction, assets)
-                }
-            } catch (error) {
-                const errorEmbed = new MessageEmbed()
-                    .setTitle("An error occured!")
-                    .setColor("#FF0000")
-                    .setDescription(`${error}`)
-                const sendOptions = { embeds: [ errorEmbed ] }
-                if (!interaction.replied) {
-                    await interaction.reply(sendOptions)
-                } else {
-                    await interaction.channel.send(sendOptions)
-                }
-            } 
-        }
+for (const file of eventFiles) {
+    const event = require(`./events/${file}`)
+    if (event.once) {
+        doomBot.once(event.name, () => { 
+            assets.music.init(client.user.id)
+            event.execute() 
+        })
+    } else {
+        doomBot.on(event.name, async (interaction) => { 
+            await event.execute(interaction, assets)
+        })
     }
-})
-
-doomBot.on("error", async (error) => {
-    console.error(error)
-})
+}
 
 deployCommands()
     .then(() => { console.log("Successfully registerd them fucking commands.") })

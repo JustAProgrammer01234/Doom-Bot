@@ -61,11 +61,15 @@ module.exports = {
         })
     
         buttonCollector.on("collect", async (i) => {
-            await i.deferUpdate()
-            await i.editReply({ components: [
-                new MessageActionRow().addComponents(helpSelectMenu.setDisabled(true)),
-                new MessageActionRow().addComponents(exitButton.setDisabled(true))
-            ]})
+            if (i.user.id === interaction.user.id) {
+                await i.deferUpdate()
+                await i.editReply({ components: [
+                    new MessageActionRow().addComponents(helpSelectMenu.setDisabled(true)),
+                    new MessageActionRow().addComponents(exitButton.setDisabled(true))
+                ]})
+            } else {
+                await i.reply({ content: "This isn't for you lmao.", ephemeral: true })
+            }
         })
     }
 }
