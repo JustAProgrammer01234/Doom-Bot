@@ -65,12 +65,12 @@ navigateCommands((cmdFile) => {
 })
 
 assets.commands = commands
+assets.music.init(doomBot.user.id)
 
 for (const file of eventFiles) {
     const event = require(`./events/${file}`)
     if (event.once) {
         doomBot.once(event.name, () => { 
-            assets.music.init(doomBot.user.id)
             event.execute() 
         })
     } else {
