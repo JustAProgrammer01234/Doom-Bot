@@ -29,7 +29,7 @@ const nodes = [
         port: 2333
     }
 ]
-doomBot.lavalinkClient = new Manager({
+const lavalinkClient = new Manager({
     nodes,
     send: (id, payload) => {
         const guild = doomBot.guilds.get(id)
@@ -38,7 +38,10 @@ doomBot.lavalinkClient = new Manager({
         }
     }
 })
-const assets = { commandList: listCommands() }
+doomBot.assets = {
+    commandList: listCommands(),
+    music: lavalinkClient
+}
 const eventFiles = fs.readdirSync("./events")
 
 async function deployCommands() {
@@ -61,24 +64,23 @@ navigateCommands((cmdFile) => {
     commands.set(cmdName, cmd)
 })
 
-assets.commands = commands
+doomBot.assets.commands = commands
 
 for (const file of eventFiles) {
     const event = require(`./events/${file}`)
     if (event.once) {
-        doomBot.once(event.name, () => { 
-            doomBot.lavalinkClient.init(doomBot.user.id)
-            assets.music = doomBot.lavalinkClient
+        doomBot.once(event.name, () => {
+            doomBot.assets.music.init(doomBot.user.id) 
             event.execute() 
         })
     } else {
         doomBot.on(event.name, async (interaction) => { 
-            await event.execute(interaction, assets)
+            await event.execute(interaction, doomBot.assets)
         })
     }
 }
 
 deployCommands()
-    .then(() => { console.log("Successfully registerd them fucking commands.") })
+    .then(() => { console.log("Successfully registered them fucking commands.") })
     .catch(console.error)
 doomBot.login(token)
