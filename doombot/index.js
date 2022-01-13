@@ -29,7 +29,7 @@ const nodes = [
         port: 2333
     }
 ]
-const lavalinkClient = new Manager({
+doomBot.lavalinkClient = new Manager({
     nodes,
     send: (id, payload) => {
         const guild = doomBot.guilds.get(id)
@@ -38,10 +38,7 @@ const lavalinkClient = new Manager({
         }
     }
 })
-const assets = {
-    commandList: listCommands(),
-    music: lavalinkClient
-}
+const assets = { commandList: listCommands() }
 const eventFiles = fs.readdirSync("./events")
 
 async function deployCommands() {
@@ -65,12 +62,13 @@ navigateCommands((cmdFile) => {
 })
 
 assets.commands = commands
-assets.music.init(clientId)
 
 for (const file of eventFiles) {
     const event = require(`./events/${file}`)
     if (event.once) {
         doomBot.once(event.name, () => { 
+            doomBot.lavalinkClient.init(doomBot.user.id)
+            assets.music = doomBot.lavalinkClient
             event.execute() 
         })
     } else {
