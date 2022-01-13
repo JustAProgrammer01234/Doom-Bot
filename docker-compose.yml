@@ -14,12 +14,12 @@ services:
     restart: always
     secrets:
       - token
-      - lavalink-passwd
+      - lavalink_passwd
     depends_on:
       - lavalink-doom 
 
 secrets: 
   token:
     file: ./credentials/token.txt
-  lavlink-passwd:
+  lavlink_passwd:
     file: ./credentials/lavalink-passwd.txt

@@ -24,7 +24,7 @@ const doomBot = new Client({
 const nodes = [
     {
         host: "localhost",
-        password: getSecret("lavalink-passwd"),
+        password: getSecret("lavalink_passwd"),
         port: 2333
     }
 ]
