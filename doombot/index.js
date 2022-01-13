@@ -11,7 +11,8 @@ const clientId = process.env.CLIENTID
 const doomBot = new Client({ 
     intents: [   
         Intents.FLAGS.GUILDS, 
-        Intents.FLAGS.GUILD_PRESENCES
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_VOICE_STATES
     ], 
     presence: {
         status: "dnd",
@@ -24,14 +25,14 @@ const doomBot = new Client({
 const nodes = [
     {
         host: "localhost",
-        password: getSecret("lavalink_passwd"),
+        password: "youshallnotpass",
         port: 2333
     }
 ]
 const lavalinkClient = new Manager({
     nodes,
     send: (id, payload) => {
-        const guild = client.guilds.get(id)
+        const guild = doomBot.guilds.get(id)
         if (guild) {
             guild.shard.send(payload)
         }
@@ -63,11 +64,13 @@ navigateCommands((cmdFile) => {
     commands.set(cmdName, cmd)
 })
 
+assets.commands = commands
+
 for (const file of eventFiles) {
     const event = require(`./events/${file}`)
     if (event.once) {
         doomBot.once(event.name, () => { 
-            assets.music.init(client.user.id)
+            assets.music.init(doomBot.user.id)
             event.execute() 
         })
     } else {

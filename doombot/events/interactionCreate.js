@@ -4,7 +4,7 @@ module.exports = {
     name: "interactionCreate",
     execute: async (interaction, assets) => {
         if (interaction.isCommand()) {
-            command = commands.get(interaction.commandName)
+            command = assets.commands.get(interaction.commandName)
             if (command) {
                 try {
                     if (command.execute.length < 1) {

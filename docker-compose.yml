@@ -2,24 +2,21 @@ version: "3.9"
 
 services: 
   lavalink-doom:
-    image: "fredboat/lavalink:master"
-    container_name: "lavalink-doom"
-    restart: "always"
-    network_mode: "host"
+    image: fredboat/lavalink:master
+    container_name: lavalink-doom
+    restart: always
+    network_mode: host
     volumes: 
-      - "./lavalink-config/application.yml:/opt/Lavalink/application.yml"
+      - ./lavalink-config/application.yml:/opt/Lavalink/application.yml
   doom-bot:
-    build: "."
-    container_name: "doom-bot"
-    restart: "always"
+    build: .
+    container_name: doom-bot
+    restart: always
     secrets:
-      - "token"
-      - "lavalink_passwd"
+      - token
     depends_on:
-      - "lavalink-doom" 
+      - lavalink-doom 
 
 secrets: 
   token:
-    file: "./credentials/token.txt"
-  lavlink_passwd:
-    file: "./credentials/lavalink-passwd.txt"
+    file: ./credentials/token.txt
