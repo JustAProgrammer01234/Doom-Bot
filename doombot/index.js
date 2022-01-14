@@ -38,7 +38,7 @@ const lavalinkClient = new Manager({
         }
     }
 })
-doomBot.assets = {
+const assets = {
     commandList: listCommands(),
     music: lavalinkClient
 }
@@ -64,18 +64,18 @@ navigateCommands((cmdFile) => {
     commands.set(cmdName, cmd)
 })
 
-doomBot.assets.commands = commands
+assets.commands = commands
 
 for (const file of eventFiles) {
     const event = require(`./events/${file}`)
     if (event.once) {
         doomBot.once(event.name, () => {
-            doomBot.assets.music.init(doomBot.user.id) 
+            assets.music.init(doomBot.user.id) 
             event.execute() 
         })
     } else {
         doomBot.on(event.name, async (interaction) => { 
-            await event.execute(interaction, doomBot.assets)
+            await event.execute(interaction, assets)
         })
     }
 }
