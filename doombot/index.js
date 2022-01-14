@@ -32,7 +32,7 @@ const nodes = [
 const lavalinkClient = new Manager({
     nodes,
     send: (id, payload) => {
-        const guild = doomBot.guilds.get(id)
+        const guild = doomBot.guilds.cache.get(id)
         if (guild) {
             guild.shard.send(payload)
         }
