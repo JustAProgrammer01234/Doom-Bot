@@ -10,7 +10,8 @@ module.exports = {
         const player = assets.music.create({
             guild: interaction.guild.id,
             voiceChannel: voiceChannel.id,
-            textChannel: interaction.channel.id
+            textChannel: interaction.channel.id,
+            selfDeafen: true
         })
         player.connect()
         await interaction.reply("Successfully connected to voice channel.")

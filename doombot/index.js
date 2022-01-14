@@ -36,7 +36,8 @@ const lavalinkClient = new Manager({
         if (guild) {
             guild.shard.send(payload)
         }
-    }
+    },
+    
 })
 const assets = {
     commandList: listCommands(),
