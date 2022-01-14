@@ -12,6 +12,7 @@ services:
     build: .
     container_name: doom-bot
     restart: always
+    network_mode: host
     secrets:
       - token
     depends_on:
