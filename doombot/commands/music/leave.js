@@ -4,7 +4,7 @@ const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js")
 module.exports = {
     data: new SlashCommandBuilder().setName("leave").setDescription("Tells the bot to leave vc."),
     execute: async (interaction, assets) => {
-        if (!guild.me.voice.channel) {
+        if (!interaction.guild.me.voice.channel) {
             return await interaction.reply("I'm not in a vc lmao.")
         }
         const guildId = interaction.guild.id
