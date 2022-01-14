@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
     data: new SlashCommandBuilder().setName("join").setDescription("Tells the bot to join vc."),
     execute: async (interaction, assets) => {
-        voiceChannel = interaction.member.voice.channel
+        const voiceChannel = interaction.member.voice.channel
         if (!voiceChannel) {
             return await interaction.reply("Bruh you must be in a vc.")
         }
