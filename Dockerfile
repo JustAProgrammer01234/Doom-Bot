@@ -14,4 +14,4 @@ RUN npm install erela.js
 
 USER node 
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
